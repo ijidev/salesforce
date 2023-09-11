@@ -54,6 +54,11 @@ class User extends Authenticatable implements LaratrustUser
         return $this->belongsTo(Tier::class);
     }
 
+    public function wallet()
+    {
+        return $this->hasMany(UserPayment::class);
+    }
+
     public function deposit()
     {
         return $this->hasMany(Deposit::class);

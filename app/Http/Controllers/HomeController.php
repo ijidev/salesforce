@@ -53,25 +53,29 @@ class HomeController extends Controller
         
     }
 
-    public function dashboard()
-    {
-        
-    }
-
     public function start()
     {
         $user = Auth::user();
+        $set = Setting::first()->get();
         // dd($user->tier->daily_optimize);
-        if ($user->optimized < $user->tier->daily_optimize) {
-            $user->optimized += 1;
-            $user->balance += $user->tier->percent;
-            $user->asset += $user->tier->percent;
-            $user->update();
-            return back()->with('success', 'Optimized');
-        } else {
-            return back()->with('error', 'Optimiz daily limit reached contact Support to reset');
-            # code...
+        if (date("H") >= $set->close_hour) {
+            return back()->with('error','Active hour passed try again '. $set->active_hour);
+        } elseif (date("H") < $set->active_hour) {
+            return back()->with('error','Active hour passed try again '. $set->active_hour);
+        }else{
+
+            if ($user->optimized < $user->tier->daily_optimize) {
+                $user->optimized += 1;
+                $user->balance += $user->tier->percent;
+                $user->asset += $user->tier->percent;
+                $user->update();
+                return back()->with('success', 'Optimized');
+            } else {
+                return back()->with('error', 'Optimiz daily limit reached contact Support to reset');
+                # code...
+            }
         }
+        
         
         // dd($user);
 
@@ -93,6 +97,7 @@ class HomeController extends Controller
 
         $user->tier_id = $plan->id;
         $user->asset = $plan->price;
+        $user->is_active = false ;
         // dd($user);
         $user->update();
 
@@ -204,8 +209,9 @@ class HomeController extends Controller
     public function withdraw()
     {
         $user = Auth::user();
+        $wallets = UserPayment::all();
         $withdraw = Withdrawal::where('user_id', $user->id)->latest()->get();
-        return view('withdraw', compact('user','withdraw'));
+        return view('withdraw', compact('user','withdraw','wallets'));
     }
 
     public function request(Request $request)
@@ -223,6 +229,7 @@ class HomeController extends Controller
 
             $withdraw->amount = $amount;
             $withdraw->user_id = $user->id;
+            $withdraw->wallet_id = $request->wallet;
             $withdraw->save();
 
             return back()->with('success','withdrawal request of $'. $amount .' submited successfuly ');

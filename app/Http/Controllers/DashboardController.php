@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Deposit;
+use App\Models\Setting;
+use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,7 +14,6 @@ class DashboardController extends Controller
     public function index()
     {
         return view('admin.dashboard');
-
     }
 
     public function users()
@@ -95,4 +97,84 @@ class DashboardController extends Controller
         $user->delete();
         return back();
     }
+
+    public function withdraw()
+    {
+        $withdraws = Withdrawal::latest()->get();
+        return view('admin.withdrawal', compact('withdraws'));
+    }
+
+    public function approve($id)
+    {
+        $withd = Withdrawal::find($id);
+        $withd->status = 'approved';
+        $withd->update();
+        return back();
+    }
+    
+    public function decline($id)
+    {
+        $withd = Withdrawal::find($id);
+        $withd->status = 'declined' ;
+        $withd->update();
+        return back();
+    }
+
+    public function deposit()
+    {
+        $deposits = Deposit::latest()->get();
+        // dd($deposits);
+        return view('admin.deposit', compact('deposits'));
+    }
+
+    public function approveDeposit($id)
+    {
+        $deposit = Deposit::find($id);
+        $deposit->is_approved = true;
+        $deposit->update();
+        $deposit->user->is_active = true;
+        $deposit->user->update();
+
+        return back()->with('success', 'Deposit approved, user account set to active');
+    }
+
+    public function settings()
+    {
+        $setting = Setting::get();
+        if ($setting->count() < 1) {
+            $set = [];
+        } else {
+            $set = $setting->first();
+        }
+        // dd($set);
+        return view('admin.settings', compact('set'));
+    }
+
+    public function updateSetting(Request $request)
+    {
+        $setting = Setting::get();
+
+        if ($setting->count() < 1) {
+            $set = new Setting();
+            $set->active_hour = $request->open;
+            $set->close_hour = $request->close;
+            $set->min_withdrawal = $request->amount;
+            $set->ref_amount = $request->ref;
+            // dd($set);
+            $set->save();
+        } else {
+            $set = $setting->first();
+            $set->active_hour = $request->open;
+            $set->close_hour = $request->close;
+            $set->min_withdrawal = $request->amount;
+            $set->ref_amount = $request->ref;
+            // dd($set);
+            $set->update();
+        }
+        
+        return back()->with('success','settings updated successfuly');
+    }
+
+
+
 }

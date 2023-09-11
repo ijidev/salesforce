@@ -38,12 +38,22 @@
 
                     <form action="{{ route('request.withdraw') }}">
                         @csrf
+                        <div class="form-group">
+                            <label for="my-select">Choose Wallet</label>
+                            <select id="my-select" class="form-control" name="wallet">
+                                @foreach($wallets as $wallet)
+                                <option value="{{ $wallet->id }}">{{ $wallet->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        
                         <div class="input-group">
                             <input class="form-control" type="number" name="amount" placeholder="Withdrawl amount..." aria-label="Withdrawl amount" aria-describedby="my-addon">
                             <div class="input-group-append">
                                 <button type="submit" class="input-group-text btn btn-success" id="my-addon">Request withdrawl</button>
                             </div>
                         </div>
+
                     </form>
 
                 </div>

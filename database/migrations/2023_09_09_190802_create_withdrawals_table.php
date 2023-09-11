@@ -14,6 +14,8 @@ return new class extends Migration
         Schema::create('withdrawals', function (Blueprint $table) {
             $table->id();
             $table->foreignid('user_id')->constrained();
+            $table->foreignid('wallet_id')->constrained('user_payments', 'id')
+            ->onDelete('set null')->onUpdate('cascade');
             $table->float('amount');
             $table->enum('status', ['approved', 'declined', 'pending'])->default('pending');
             $table->timestamps();

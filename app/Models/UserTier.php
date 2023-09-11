@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class UserTier extends Model
 {
     use HasFactory;
+
+    
 }

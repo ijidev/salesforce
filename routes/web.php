@@ -64,6 +64,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/settings', 'settings')->name('settings');
         Route::get('/admin/settings-update', 'updateSetting')->name('settings.update');
         Route::get('/admin/withwdrawal', 'withdraw')->name('withdrawa.request');
+        Route::get('/admin/approve-withwdrawal/{id}', 'approve')->name('approve');
+        Route::get('/admin/decline-withwdrawal/{id}', 'decline')->name('decline');
         Route::get('/admin/deposit', 'deposit')->name('deposit.request');
+        Route::get('/admin/update-deposit/{id}', 'approveDeposit')->name('approve.deposit');
     });
 });

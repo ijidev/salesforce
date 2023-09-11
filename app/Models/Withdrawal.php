@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Withdrawal extends Model
 {
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+    public function wallet()
+    {
+        return $this->belongsTo(UserPayment::class);
+    }
 }
