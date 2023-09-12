@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use auth;
 use App\Models\Tier;
 use App\Models\Deposit;
+use App\Models\Setting;
 use App\Models\Withdrawal;
 use App\Models\PaymentInfo;
 use App\Models\UserPayment;
@@ -56,13 +57,24 @@ class HomeController extends Controller
     public function start()
     {
         $user = Auth::user();
-        $set = Setting::first()->get();
+        $set = Setting::get()->first();
+        $close_time = \Carbon\Carbon::parse($set->close_hour);
+        $open_time = \Carbon\Carbon::parse($set->active_hour);
+        $current_time = date('H');
+        // dd('opening time '.$open_time->format('H') , "current time " . date('H'), 'closing time ' . $close_time->format('H'));
+         
         // dd($user->tier->daily_optimize);
-        if (date("H") >= $set->close_hour) {
-            return back()->with('error','Active hour passed try again '. $set->active_hour);
-        } elseif (date("H") < $set->active_hour) {
-            return back()->with('error','Active hour passed try again '. $set->active_hour);
-        }else{
+        if ($current_time >= $close_time->format('H')) 
+        {
+            return back()->with('error','Active hour passed try again between '. $set->active_hour . ' & ' . $set->close_hour);
+        } 
+
+        elseif ($current_time < $open_time->format('H')) 
+        {
+            return back()->with('error','Active hour passed try again between '. $set->active_hour . ' & ' . $set->close_hour);
+        }
+        
+        else{
 
             if ($user->optimized < $user->tier->daily_optimize) {
                 $user->optimized += 1;
@@ -209,7 +221,8 @@ class HomeController extends Controller
     public function withdraw()
     {
         $user = Auth::user();
-        $wallets = UserPayment::all();
+        $wallets = UserPayment::get();
+        // dd($wallets);
         $withdraw = Withdrawal::where('user_id', $user->id)->latest()->get();
         return view('withdraw', compact('user','withdraw','wallets'));
     }

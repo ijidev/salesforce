@@ -16,15 +16,7 @@
                 <div class="p-2">
                     <span style="font-size: 20px; font:bold;"> 
                         {{ $user->name }}
-                        <span class="p-1" style="
-                                border:solid 1px;
-                                border-radius: 50%;
-                                border-color:blueviolet;
-                                ">
-                                {{-- {{ $item->icon }} --}}
-                                {{ ' ' . $user->tier->icon }}
-                                {{-- <i class="fa fa-rocket" aria-hidden="true"></i> --}}
-                            </span>
+                        <img src="{{ asset($user->tier->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
                     </span>
                     <br>
                 </div>

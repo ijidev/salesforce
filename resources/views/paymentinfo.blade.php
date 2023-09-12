@@ -1,17 +1,17 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8">
 
             <div class="card mt-3">
                 <div class="card-header">
                     <h5 class="card-title">My Details</h5>
                 </div>
                 <div class="card-body">
-                    <table class="table table-light">
+                    <table class="table table-dark">
                         <thead>
                             <tr>
                                 <td>Wallet</td>

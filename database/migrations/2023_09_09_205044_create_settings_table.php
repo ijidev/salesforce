@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('ref_amount')->default(0);
             $table->float('min_withdrawal')->default(0);
-            $table->timestamp('active_hour')->nullable();
-            $table->timestamp('close_hour')->nullable();
+            $table->time('active_hour')->nullable();
+            $table->time('close_hour')->nullable();
             $table->timestamps();
         });
 

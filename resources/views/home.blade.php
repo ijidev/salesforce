@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 
@@ -29,22 +29,14 @@
                             <div class="p-2">
                                 <span style="font-size: 20px; font:bold;"> 
                                     {{ $user->name }}
-                                    <span class="p-1" style="
-                                            border:solid 1px;
-                                            border-radius: 50%;
-                                            border-color:blueviolet;
-                                            ">
-                                            {{-- {{ $item->icon }} --}}
-                                            {{ ' ' . $tier->icon }}
-                                            {{-- <i class="fa fa-rocket" aria-hidden="true"></i> --}}
-                                        </span>
                                 </span>
                                 <br>
                             </div>
         
                             <div class="p-2">
                                 <span style="font-size: 20px; font:bold;">
-                                    Membership:{{' '. $user->tier->name . ' ' . $user->tier->icon }}
+                                    Membership:{{' '. $user->tier->name }}
+                                    <img src="{{ asset($user->tier->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
                                 </span> 
                             </div>
 
@@ -109,8 +101,13 @@
 
     <div class="card mt-3">
         <div class="card-header">
-            <div class="card-title">
-                <h4>Tiers</h4>
+            <div class="row">
+                <div class="col-10 card-title">
+                    <h4>Membership Plans</h4>
+                </div>
+                <div class="col-2">
+                    <a href="{{ route('membership') }}" class="btn btn-outline-primary">All >></a>
+                </div>
             </div>
         </div>
 
@@ -124,10 +121,11 @@
                         <div class="col-3">
                             <span class="p-3" style="
                                 border:solid 1px;
-                                border-radius: 50%;
+                                border-radius: 10%;
                                 border-color:blueviolet;
                                 ">
-                                {{ $item->icon }}
+                                <img src="{{ asset($item->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
+                                
                                 {{-- <i class="fa fa-rocket" aria-hidden="true"></i> --}}
                             </span>
                         </div>

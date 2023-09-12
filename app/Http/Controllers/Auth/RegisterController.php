@@ -64,7 +64,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     { 
-        // dd($data);
+        $parent = User::where('ref_id', $data['ref_code'])->first();
+        dd($parent, data[]);
+        if (condition) {
+            # code...
+        }
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],

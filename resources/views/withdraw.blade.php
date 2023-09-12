@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.front')
 
 @section('content')
 
@@ -15,7 +15,6 @@
                     <div class="alert alert-danger text-center" role="alert">
                         {{ session('error') }}
                     </div>   
-                    
                 @endif
                 <div class="card-body">
                     
@@ -42,7 +41,7 @@
                             <label for="my-select">Choose Wallet</label>
                             <select id="my-select" class="form-control" name="wallet">
                                 @foreach($wallets as $wallet)
-                                <option value="{{ $wallet->id }}">{{ $wallet->name }}</option>
+                                <option value="{{ $wallet->id }}">{{ $wallet->wallet }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -50,7 +49,7 @@
                         <div class="input-group">
                             <input class="form-control" type="number" name="amount" placeholder="Withdrawl amount..." aria-label="Withdrawl amount" aria-describedby="my-addon">
                             <div class="input-group-append">
-                                <button type="submit" class="input-group-text btn btn-success" id="my-addon">Request withdrawl</button>
+                                <button type="submit" class="input-group-text btn btn-success text-white" id="my-addon">Request withdrawl</button>
                             </div>
                         </div>
 
@@ -64,7 +63,7 @@
                     <h5 class="card-title">Withdrawal History</h5>
                 </div>
                 <div class="card-body">
-                    <table class="table table-light">
+                    <table class="table table-dark">
                         <thead>
                             <tr>
                                 <td>Amount</td>

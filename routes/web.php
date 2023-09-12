@@ -50,12 +50,18 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/contact-us', 'contact')->name('contact');
         Route::get('/notification', 'notify')->name('notify');
     }); 
+
+    Route::controller(LoginController::class)->group(function () {
+        Route::get('/logout', 'logout')->name('logou');
+        Route::Post('/create', 'ctrate')->name('registe');
+    });
 });
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin', 'index')->name('admin');
         Route::get('/admin/membership', 'plans')->name('plans');
+        Route::post('/admin/create', 'addplan')->name('add.plan');
         Route::get('/admin/user/{id}', 'user')->name('user');
         Route::get('/admin/user/update/{id}', 'updateUser')->name('user.update');
         Route::get('/admin/user/delete/{id}', 'delete')->name('delete.user');

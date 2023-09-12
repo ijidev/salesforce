@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Tier;
 use App\Models\User;
 use App\Models\Deposit;
 use App\Models\Setting;
@@ -175,6 +176,31 @@ class DashboardController extends Controller
         return back()->with('success','settings updated successfuly');
     }
 
+    public function plans()
+    {
+        $plans  = Tier::get();
+        return view('admin.tier', compact('plans'));
+    }
 
+    public function addplan(Request $request)
+    {
+        $plan  = new Tier();
+        $plan->name = $request->name;
+        $plan->description = $request->description;
+        $plan->price = $request->price;
+        $plan->percent = $request->percent;
+        $plan->daily_optimize = $request->optimize;
+
+        $file = $request->file('icon');
+        $extention = $file->getClientOriginalExtension();
+        $filename = $request->name.'.'.$extention;
+        $path = 'uploads/icon/' ;
+        $file->move($path, $filename);
+
+        $plan->icon = $path . $filename;
+        // dd($plan);
+        $plan->save();
+        return back()->with('success','successfully created');
+    }
 
 }
