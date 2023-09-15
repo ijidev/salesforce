@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\Models\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -53,6 +55,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'ref_code' => ['required', 'exists:users,ref_id']
+        ],[
+            'ref_code.exists' => 'invalid ref_code, No user with this ref id.'
         ]);
     }
 
@@ -65,22 +70,22 @@ class RegisterController extends Controller
     protected function create(array $data)
     { 
         $parent = User::where('ref_id', $data['ref_code'])->first();
-        dd($parent, data[]);
-        if (condition) {
-            # code...
-        }
+
+            
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'user_id' => $parent->id,
             'pass' => $data['password'],
             'password' => Hash::make($data['password']),
         ]);
-        
         $user = $user->update([
             'ref_id' => 'ref_'. 0 .$user->id
         ]);
-        // dd($user);
         $user->addRole('user');
+
         return $user;
+        
+        
     }
 }

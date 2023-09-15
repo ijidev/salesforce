@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Faq;
 use App\Models\Tier;
 use App\Models\User;
 use App\Models\Deposit;
@@ -169,6 +170,7 @@ class DashboardController extends Controller
             $set->close_hour = $request->close;
             $set->min_withdrawal = $request->amount;
             $set->ref_amount = $request->ref;
+            $set->term = $request->terms;
             // dd($set);
             $set->update();
         }
@@ -203,4 +205,9 @@ class DashboardController extends Controller
         return back()->with('success','successfully created');
     }
 
+    public function faq()
+    {
+        $faqs = Faq::get();
+        return view('admin.faq' ,compact('faqs'));
+    }
 }

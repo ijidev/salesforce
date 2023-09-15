@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->foreignid('user_id')->constrained()->nullable();
             $table->string('ref_id')->nullable();
-            $table->foreignid('ref')->nullable()->constrained('users', 'id');
+            // $table->foreignid('ref')->nullable()->constrained('users', 'id');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('pass');

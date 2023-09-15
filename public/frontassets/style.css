@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+body {
+  background-color: #531CB3;
+  margin: 0px;
+  padding: 0px;
+  font-family: 'Roboto', sans-serif;
+  color: white;
+  background-image: url('./images/BG-26.png');
+  /* opacity: 0.5; */
+  /* height: 100vh !important; */
+  background-position:center;
+  background-position: fixed;
+  scroll-behavior: smooth;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.container {
+    padding: 4px;
+    border-radius: 10px;
+    background-color: rgba(0, 0, 0, 0.658);
+  /* border: white solid 1px; */
+  width: 50%;
+  /* opacity: 0.9; */
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 100px;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #944BBB;
+  padding: 3px 20px;
+  color: white;
+}
+
+header .user {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.faq-card {
+  margin-top: 15px;
+  border: whitesmoke solid 1px;
+  border-radius: 10px;
+  overflow: auto;
+  /* margin-top: 3px; */
+}
+
+.faq-question {
+  background-color: #112;
+  border: whitesmoke solid 1px;
+  border-radius: 5px;
+  color: white;
+}
+
+
+/* Styles for the modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  overflow: auto;
+}
+
+/* Styles for the modal content */
+.modal-content {
+  background-color: #112;
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+  max-width: 400px;
+  text-align: center;
+  border-radius: 5px;
+  position: relative;
+}
+
+/* Close button for the modal */
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Style the open modal button
+#openModalBtn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+} */
+
+/* #openModalBtn:hover {
+  background-color: #45a049;
+} */
+
+
+@media (max-width: 768px) {
+  .container {
+    width: 100%;
+  }
+}
+
+section {
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.icon-list {
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.icon-card {
+  width: 33%;
+  /* align-items: center; */
+  align-items: center;
+}
+
+
+.icon {
+  background-color: #944BBB;
+  text-align: center;
+  align-self: center;
+  align-items: center;
+  border-radius: 100%;
+  height: 30px;
+  padding: 10px;
+  margin-left: 27%;
+  /* padding-bottom: 20px; */
+  width: 30px;
+  border: 1px white solid;
+
+}
+
+.tiers {
+  background-color: #944BBB;
+  border-radius: 20px;
+  /* padding: 5px 10px; */
+  border: 1px solid white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.tiers-heading {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px;
+}
+
+a {
+  color: white;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+ul li {
+  padding-top: 10px;
+}
+
+.medal-container {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.medal {
+  width: 15%;
+}
+
+.medal img {
+  width: 100%;
+
+}
+
+footer {
+  position: fixed;
+  display: flex;
+  justify-content: space-evenly;
+  bottom: 0px;
+  padding: 7px;
+  background-color: black;
+  width: 100%;
+  height: 70px;
+  border-top: 1px solid white;
+}
+
+.footer-card {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.card-top {
+  position: relative;
+  top: -35px;
+  text-align: center;
+}
+
+.footer-card-top {
+  background-color: #23025e;
+  padding: 20px;
+  border-radius: 100%;
+  margin-bottom: 10px;
+}
+
+.task {
+  margin-top: 100px;
+  background: transparent;
+  background-color: #531CB3;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 20px;
+  text-align: center;
+}
+
+
+.task button {
+  padding: 10px;
+  border-radius: 30px;
+  height: 50px;
+  width: 120px;
+  background-color: #944BBB;
+  color: white;
+  border: none;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.starting-container {
+  background-color: #531CB3;
+  padding: 15px;
+  border-radius: 20px;
+  margin-top: 20px;
+
+  &::before {
+    opacity: 0.5;
+  }
+}
+
+.starting-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.starting-card {
+  border-bottom: 1px solid white;
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 20px;
+}
+
+.text {
+  color: gray;
+  margin-top: auto;
+  margin-bottom: auto;
+}

@@ -11,17 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('settings', function (Blueprint $table) {
+        Schema::create('faqs', function (Blueprint $table) {
             $table->id();
-            $table->string('ref_amount')->default(0);
-            $table->float('min_withdrawal')->default(0);
-            $table->time('active_hour')->nullable();
-            $table->time('close_hour')->nullable();
-            $table->longText('about')->nullable();
-            $table->longText('term')->nullable();
+            $table->string('question');
+            $table->string('answer');
             $table->timestamps();
         });
-
     }
 
     /**
@@ -29,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('settings');
+        Schema::dropIfExists('faqs');
     }
 };

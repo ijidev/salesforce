@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/home', 'index')->name('home');
         Route::get('/profile', 'profile')->name('profile');
         Route::get('/optimize', 'start')->name('start');
+        Route::get('/get-Stated', 'getstarted')->name('getstarted');
         Route::get('/deposit/{id}', 'deposit')->name('deposit');
         Route::post('/complete-deposit/{id}', 'confirmDeposit')->name('confirm.deposit');
     
@@ -67,6 +68,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/user/delete/{id}', 'delete')->name('delete.user');
         Route::get('/admin/users', 'users')->name('users');
         Route::get('/admin/users/fund/{id}', 'fund')->name('manage.funds');
+        Route::get('/admin/faq', 'faq')->name('faq');
+        // Route::get('/admin/terms', 'term')->name('terms');
         Route::get('/admin/settings', 'settings')->name('settings');
         Route::get('/admin/settings-update', 'updateSetting')->name('settings.update');
         Route::get('/admin/withwdrawal', 'withdraw')->name('withdrawa.request');

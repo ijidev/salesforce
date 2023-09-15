@@ -63,4 +63,9 @@ class User extends Authenticatable implements LaratrustUser
     {
         return $this->hasMany(Deposit::class);
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use auth;
+use App\Models\Faq;
 use App\Models\Tier;
 use App\Models\Deposit;
 use App\Models\Setting;
@@ -40,6 +41,8 @@ class HomeController extends Controller
 
             $d = Deposit::where('user_id',Auth::user()->id)->get()->first();
             $user = Auth::user();
+            $faqs = Faq::get();
+            $set = Setting::get()->first();
             if ($user->tier_id == null) {
                 $tiers = Tier::all();
 
@@ -48,19 +51,31 @@ class HomeController extends Controller
                 $tiers = Tier::get()->take(4);
                 $tier = $user->tier->get()->first();
                 // dd($tiers);
-                return view('home', compact('user', 'tier', 'tiers','d'));
+                return view('home', compact('user', 'tier', 'tiers','faqs', 'set'));
             }
         }
         
     }
 
+    public function getstarted()
+    {
+        $user = Auth::user();
+        return view('start', compact('user',));
+    }
+
     public function start()
     {
         $user = Auth::user();
+        $parent = $user->parent;
         $set = Setting::get()->first();
         $close_time = \Carbon\Carbon::parse($set->close_hour);
         $open_time = \Carbon\Carbon::parse($set->active_hour);
         $current_time = date('H');
+        
+        
+        // $ref_amt = $user->tier->percent / 100 * $set->ref_amount;
+        // dd( $ref_amt);
+
         // dd('opening time '.$open_time->format('H') , "current time " . date('H'), 'closing time ' . $close_time->format('H'));
          
         // dd($user->tier->daily_optimize);
@@ -77,10 +92,19 @@ class HomeController extends Controller
         else{
 
             if ($user->optimized < $user->tier->daily_optimize) {
+
+                $percent = ($user->tier->price / 100) * $user->tier->percent;
+
                 $user->optimized += 1;
-                $user->balance += $user->tier->percent;
-                $user->asset += $user->tier->percent;
+                $user->balance += $percent;
+                $user->asset += $percent;
                 $user->update();
+
+                $ref_amt = ($user->tier->percent / 100 ) * $set->ref_amount;
+                $parent->balance += $set->ref_amt;
+                $parent->asset += $ref_amt;
+                $parent->update();
+                
                 return back()->with('success', 'Optimized');
             } else {
                 return back()->with('error', 'Optimiz daily limit reached contact Support to reset');

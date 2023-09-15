@@ -36,6 +36,7 @@
         <div class="card-header">
             <h5>Other Setting</h5>
         </div>
+
         <div class="card-body">
             <div class="row">
                 
@@ -59,6 +60,21 @@
                
             </div>
         </div>
+
+        <div class="card-header">
+          <h5>
+            Terms & condition
+          </h5>
+        </div>
+
+        <div class="card-body">
+          <div class="mb-3">
+            {{-- <label for="" class="form-label">Terms & condition</label> --}}
+            <textarea class="form-control" name="terms" id="" rows="5">{{ $set->term }}</textarea>
+          </div>
+        </div>
+
+
         <div class="card-footer">
             <button class="btn btn-success" type="submit">Update</button>
         </div>
