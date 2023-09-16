@@ -77,9 +77,14 @@
             </div>
         
             <div class="footer-card">
-                <img src="{{ asset('frontassets/images/notify.png') }}" height="25" width="25" alt="">  
+                <a href="{{ route('notify') }}">
+                    <img src="{{ asset('frontassets/images/notify.png') }}" height="25" width="25" alt="">
+                @if ($notify->count() >= 1)
+                    <div class="badge">{{ $notify->count() }}</div>
+                @endif
                 <br>
-                <a href="{{ route('notify') }}">Notification</a>
+                    Notification 
+                </a>
             </div>
 
             <div class="footer-card">

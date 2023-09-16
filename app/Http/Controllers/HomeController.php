@@ -10,6 +10,7 @@ use App\Models\Setting;
 use App\Models\Withdrawal;
 use App\Models\PaymentInfo;
 use App\Models\UserPayment;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\DashboardController;
@@ -39,6 +40,8 @@ class HomeController extends Controller
         } 
         else{
 
+            $notify = Notification::where('user_id', Auth::user()->id)
+            ->where('is_read', false)->get();
             $d = Deposit::where('user_id',Auth::user()->id)->get()->first();
             $user = Auth::user();
             $faqs = Faq::get();
@@ -51,7 +54,7 @@ class HomeController extends Controller
                 $tiers = Tier::get()->take(4);
                 $tier = $user->tier->get()->first();
                 // dd($tiers);
-                return view('home', compact('user', 'tier', 'tiers','faqs', 'set'));
+                return view('home', compact('user', 'tier', 'tiers','faqs', 'set', 'notify'));
             }
         }
         
@@ -137,6 +140,12 @@ class HomeController extends Controller
         // dd($user);
         $user->update();
 
+        $notif = new Notification();
+            $notif->title = 'Deposit Pending review';
+            $notif->massage = 'Deposit successful pending admin review';
+            $notif->user_id = $user->id;
+        $notif->save();
+
 
         // $request -> validate([
         //     'proof' => 'image',
@@ -199,6 +208,13 @@ class HomeController extends Controller
         }
         // dd($user);
         $user->update();
+       
+        $notif = new Notification();
+            $notif->title = 'Account Update';
+            $notif->massage = 'Your Account info successfuly updated';
+            $notif->user_id = $user->id;
+        $notif->save();
+
         return back();
     }
 
@@ -269,6 +285,12 @@ class HomeController extends Controller
             $withdraw->wallet_id = $request->wallet;
             $withdraw->save();
 
+            $notif = new Notification();
+            $notif->title = 'Withdrawal Request';
+            $notif->massage = 'Withdrawal Request submitted successfuly';
+            $notif->user_id = $user->id;
+            $notif->save();
+
             return back()->with('success','withdrawal request of $'. $amount .' submited successfuly ');
         }
     }
@@ -276,5 +298,19 @@ class HomeController extends Controller
     public function contact()
     {
         return view('contact');
+    }
+
+    public function notify()
+    {
+        $notification = Notification::where('user_id', Auth::user()->id)->get(); 
+        // dd($notification);
+        $notifies = Notification::where('user_id', Auth::user()->id)
+            ->where('is_read', false)->get();
+
+            foreach ($notifies as $notify) {
+                $notify->is_read = true;
+                $notify->update();
+            }
+        return view('notify', compact('notification'));
     }
 }

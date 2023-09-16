@@ -38,6 +38,13 @@ class DashboardController extends Controller
             // dd($request->all(), $user);
             $user->asset += $request->amount;
             $user->update();
+
+            $notif = new Notification();
+            $notif->title = 'Account Creadited';
+            $notif->massage = 'Your Account has been creadited with $'.$request->amount;
+            $notif->user_id = $user->id;
+            $notif->save();
+
             return back()->with('success', 'User Balance toped up with $'. $request->amount);
         }
         
@@ -45,6 +52,12 @@ class DashboardController extends Controller
         {
             $user->asset -= $request->amount;
             $user->update();
+
+            $notif = new Notification();
+            $notif->title = 'Account Debited';
+            $notif->massage = 'Your Account has been Debit with $'.$request->amount;
+            $notif->user_id = $user->id;
+            $notif->save();
 
             return back()->with('success', 'User Balance debited with $'. $request->amount);
         }
@@ -55,6 +68,12 @@ class DashboardController extends Controller
                 $user->asset -= $request->amount;
                 $user->frozen += $request->amount;
                 $user->update();
+
+                $notif = new Notification();
+                $notif->title = 'Asset Frozen';
+                $notif->massage = '$'.$request->amount . ' of your asset frozen';
+                $notif->user_id = $user->id;
+                $notif->save();
 
                 return back()->with('success', ' $'. $request->amount . ' freezed from user Balance Successfuly');
             } else {
@@ -69,6 +88,12 @@ class DashboardController extends Controller
                 $user->frozen -= $request->amount;
                 $user->asset += $request->amount;
                 $user->update();
+
+                $notif = new Notification();
+                $notif->title = 'Asset Unfreezed';
+                $notif->massage = '$'.$request->amount . ' of frozen asset unfrozed and moved to your balance';
+                $notif->user_id = $user->id;
+                $notif->save();
 
                 return back()->with('success', ' $'. $request->amount . ' unfreezed to user Balance Successfuly');
             } else {
@@ -111,6 +136,13 @@ class DashboardController extends Controller
         $withd = Withdrawal::find($id);
         $withd->status = 'approved';
         $withd->update();
+
+        $notif = new Notification();
+        $notif->title = 'Withdrawal Request Approved';
+        $notif->massage = 'Your Withdrawl Request has been appeoved successfuly fund will arive in your provided wallet address soon.';
+        $notif->user_id = $withd->user->id;
+        $notif->save();
+
         return back();
     }
     
@@ -136,6 +168,12 @@ class DashboardController extends Controller
         $deposit->update();
         $deposit->user->is_active = true;
         $deposit->user->update();
+
+        $notif = new Notification();
+        $notif->title = 'Deposit Request Approved';
+        $notif->massage = 'Your deposit Request has been appeoved successfuly and your account is now active. Now you can start optimizing to make profit.';
+        $notif->user_id = $deposit->user->id;
+        $notif->save();
 
         return back()->with('success', 'Deposit approved, user account set to active');
     }
