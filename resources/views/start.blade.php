@@ -1,12 +1,18 @@
 @extends('layouts.front-header')
 @section('content')
-<div class="task">
+  
+  <div class="task">
     <div>
       <h3>Optimise <br> {{ '('.$user->optimized .'/'. $user->tier->daily_optimize .')' }}</h3>
     </div>
-    <form action="{{ route('start') }}">
-        <button type="submit">Start Now</button>
-    </form>
+    @if ($user->optimized >= $user->tier->daily_optimize)
+        <a class="btn text-white" href="{{ route('contact') }}" style="border: 1px solid white ; border-radius:10px; padding:5px;">Contact Support</a>
+    @else
+      <form action="{{ route('start') }}">
+          <button type="submit">Start Now</button>
+      </form>
+        
+    @endif
   </div>
   
   <div class="starting-container">
@@ -19,21 +25,21 @@
         <h4>Total Profit</h4>
         <p>${{ $user->balance }}</p>
       </div>
-      <p class="text">Profit Reset Daily</p>
+      <p class="text">Accumulated Profit</p>
     </div>
     <div class="starting-card">
       <div>
-        <h4>Today's Profit</h4>
-        <p>$0.00</p>
+        <h4>Reset count</h4>
+        <p>{{ $user->reset_count . '/' . $user->tier->reset}}</p>
       </div>
-      <p class="text">Profit Reset Daily</p>
+      <p class="text">Tier reset count</p>
     </div>
     <div class="starting-card">
       <div>
-        <h4>Asset </h4>
-        <p>$0.00</p>
+        <h4>Asset value</h4>
+        <p>${{ $user->asset }}</p>
       </div>
-      <p class="text">Profit Reset Daily</p>
+      <p class="text">Accumulated Asset</p>
     </div>
   </div>
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="row justify-content-center">
-        <div class="col-md-5">
+        <div class="col-md-8">
             
             <div class="card">
                
@@ -11,7 +11,7 @@
                     
                     <img src="{{ asset('assets/img/avatar-2.jpg') }}" width="100" height="100" class="img-fluid rounded-circle" alt="img">
     
-                    <div class="p-2">
+                    <div class="p-2 text-white">
                         <span style="font-size: 20px; font:bold;"> 
                             {{ $user->name }}
                             <img src="{{ asset($user->tier->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
@@ -20,30 +20,33 @@
                     </div>
 
                     <div class="p-2">
-                        <span style="font-size: 20px; font:bold;">
-                            User-ID:{{' '. $user->ref_id }}
+                        <span class="profile-title">
+                            User-ID:
+                        </span> 
+                        <span class="profile-value">
+                            {{' '. $user->ref_id }}
                         </span> 
                     </div>
 
-                    <div class="form-group">
-                        <span style="font-size: 20px; font:bold;">
-                            <label for="my-input">Credit Score:</label>
-                        </span> 
-                        <input id="my-input" class="form-control-range" type="range" value="{{ $user->credit_score }}" disabled min="0" max="100"> {{ $user->credit_score }}
+                    <div class="range-wrap">
+                        <div class="range-value profile-title">Credit Score:</div>
+                        <div class="range-value" id="rangeV"></div>
+                        {{-- <input id="range" type="range" min="200" max="800" value="200" step="1"> --}}
+                        <input id="range"  type="range" value="{{ $user->credit_score }}" disabled  min="0" max="100">
                     </div>
 
                     <div class="row p-3">
-                        <div class="col-4" style="border-right: solid 1px;">
+                        <div class="col-4 text-white" style="border-right: solid 1px;">
                             {{ '$'.$user->balance }} <br>
                             Total Profit
                         </div>
 
-                        <div class="col-4" style="border-right: solid 1px;">
+                        <div class="col-4 text-white" style="border-right: solid 1px;">
                             {{ '$'.$user->frozen }} <br>
                             frozen bal
                         </div>
 
-                        <div class="col-4" >
+                        <div class="col-4 text-white" >
                             {{ '$'.$user->asset }} <br>
                             Asset Value
                         </div>

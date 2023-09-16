@@ -272,4 +272,9 @@ class HomeController extends Controller
             return back()->with('success','withdrawal request of $'. $amount .' submited successfuly ');
         }
     }
+
+    public function contact()
+    {
+        return view('contact');
+    }
 }

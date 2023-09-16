@@ -27,6 +27,7 @@ return new class extends Migration
             $table->float('balance')->default(0);
             $table->float('frozen')->default(0);
             $table->float('asset')->default(0);
+            $table->integer('reset_count')->default(0);
             $table->integer('credit_score')->default(0);
 
             $table->boolean('is_active')->default(false);

@@ -16,9 +16,9 @@
                         {{ session('error') }}
                     </div>   
                 @endif
-                <div class="card-body">
+                <div class="card-body text-white">
                     
-                    <div class="row p-3 text-center">
+                    <div class="row p-3 text-center ">
                         {{-- <div class="col-4" style="border-right: solid 1px;">
                             {{ '$'.$user->balance }} <br>
                             Total Profit
@@ -68,6 +68,7 @@
                             <tr>
                                 <td>Amount</td>
                                 <td>Status</td>
+                                <td>Wallet</td>
                                 
                             </tr>
                         </thead>
@@ -89,6 +90,9 @@
                                             {{ $withdraw->status }}
                                             </span>
                                         @endif
+                                    </td>
+                                    <td>
+                                        {{ $withdraw->wallet->wallet }}
                                     </td>
                                     
                                 </tr>

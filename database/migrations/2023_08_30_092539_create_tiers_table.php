@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('icon')->nullable();
             $table->integer('price');
             $table->float('percent')->default(0.00);
+            $table->integer('reset')->default(3);
             $table->integer('daily_optimize')->default(30);
             $table->timestamps();
         });

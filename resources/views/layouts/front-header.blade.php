@@ -10,17 +10,20 @@
 
     <body>
         <header>
-        <div>
-            <h3>SalesForce</h3>
-        </div>
-        <div class="user">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-square"
-            viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
-            </svg> 
-            <a href="{{ route('profile') }}">Profile</a>
-        </div>
+            <div>
+                <a href="{{ route('home') }}">
+                    <h3>SalesForce</h3>
+                </a>
+            </div>
+            <div class="user">
+                <a href="{{ route('profile') }}">
+                    <img src="{{ asset('frontassets/images/profile.png') }}" width="25" alt="profile"> 
+                Profile</a>
+
+                <a href="{{ route('logou') }}">
+                    Logout
+                </a>
+            </div>
         </header>
 
         <div class="page-header">
@@ -47,20 +50,14 @@
         <footer>
             <div class="footer-card">
 
-            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-house-check"
-                viewBox="0 0 16 16">
-                <path
-                d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.708L8 2.207l-5 5V13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 2 13.5V8.207l-.646.647a.5.5 0 1 1-.708-.708L7.293 1.5Z" />
-                <path
-                d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.707l.547.547 1.17-1.951a.5.5 0 1 1 .858.514Z" />
-            </svg> 
+            <img src="{{ asset('frontassets/images/home.png') }}" width="25" alt="home">
             <br>
             <a href="{{ route('home') }}">Home</a>
             </div>
 
 
             <div class="footer-card">
-                <a href="">
+                <a href="{{ route('contact') }}">
                 <img src="{{ asset('frontassets/images/sopport-footer.png') }}" height="25" width="25" alt=""> 
                 <br>
                     <span>
@@ -80,18 +77,16 @@
             </div>
         
             <div class="footer-card">
-                <img src="{{ asset('frontassets/images/records.png') }}" height="25" width="25" alt="">  
+                <img src="{{ asset('frontassets/images/notify.png') }}" height="25" width="25" alt="">  
                 <br>
-                <a href="{{ route('withdraw') }}">Records</a>
+                <a href="{{ route('notify') }}">Notification</a>
             </div>
 
             <div class="footer-card">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-person-square"
-            viewBox="0 0 16 16">
-            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
-            <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1v-1c0-1-1-4-6-4s-6 3-6 4v1a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12z" />
-            </svg> <br>
-                <a href="{{ route('profile') }}">Profile</a>
+                <a href="{{ route('profile') }}">
+                    <img src="{{ asset('frontassets/images/profile.png') }}" width="25" alt="profile"> <br>
+                    Profile
+                </a>
             </div>
 
         </footer>

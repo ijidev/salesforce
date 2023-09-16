@@ -11,7 +11,7 @@
                     <h5 class="card-title">My Details</h5>
                 </div>
                 <div class="card-body">
-                    <table class="table table-dark">
+                    <table class="table table-dark table-responsive">
                         <thead>
                             <tr>
                                 <td>Wallet</td>
@@ -24,7 +24,7 @@
                                     <th>{{ $info->wallet . ' :' }} </th>
                                     <th>{{ $info->address }}</th>
                                     <th><a href="{{ route('info.remove',$info->id) }}" class="btn btn-danger">X</a></th>
-                                    <th><a href="{{ route('info.edit',$info->id) }}" class="btn btn-secondray">Edit</a></th>
+                                    <th><a href="{{ route('info.edit',$info->id) }}" class="btn bg-light">Edit</a></th>
                                 </tr>
                             @endforeach
                         </tbody>

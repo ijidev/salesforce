@@ -4,22 +4,33 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  {{-- <link rel="stylesheet" href="{{ asset('frontassets/style.css') }}"> --}}
+  <link rel="stylesheet" href="{{ asset('frontassets/custom.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>SalesForce</title>
 </head>
-<body class="bg-primary">
+<body class="body-bg">
  
 
-<nav class="navbar  navbar-dark bg-dark sticky-top">
+<nav class="navbar sticky-top">
     <a href="{{ route('home') }}" class="navbar-brand">SalseForce</a>
     {{-- <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button> --}}
-    <div id="my-nav" class="">
+    <div id="my-nav" class="navbar-expand">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('profile') }}"> Profile <span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('profile') }}">
+                    <img src="{{ asset('frontassets/images/profile.png') }}" width="25" alt="profile"> 
+                    Profile
+                </a>
+
+                
+            </li>
+
+            <li>
+                <a href="{{ route('logou') }}">
+                    Logout
+                </a>
             </li>
             
         </ul>
@@ -112,6 +123,7 @@
 
   </div>
 </body>
+<script src="{{ asset('frontassets/custom.js') }}"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>

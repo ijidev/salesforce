@@ -81,7 +81,7 @@
 <div class="tiers">
 <div class="tiers-heading">
     <h4>Tiers</h4>
-    <a href="{{ route('membership') }}">View More</a>
+    <a href="{{ route('membership') }}">View All ></a>
 </div>
 <div class="medal-container">
     @foreach ($tiers as $item)
