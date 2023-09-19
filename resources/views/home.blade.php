@@ -93,7 +93,7 @@
 <hr>
 <ul>
     {{-- {{ $tier->description }} --}}
-    @if (Auth::user()->tier->name == 'normal')
+    @if (Auth::user()->tier->name == 'Normal')
         Normal users are asigned genral usage access to data collection
         <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
         <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>

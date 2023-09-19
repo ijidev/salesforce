@@ -80,7 +80,7 @@
                         
                         <div class="card-body">
                             <ul class="card-text">
-                                @if ($item->name == 'normal')
+                                @if ($item->name == 'Normal')
                                     {{ $item->name }} users are asigned genral usage access to data collection
                                     <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
                                     <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
