@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('user_payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignid('user_id')->constrained;
+            $table->foreignid('user_id')->constrained();
             $table->string('wallet');
             $table->string('addess');
             $table->timestamps();

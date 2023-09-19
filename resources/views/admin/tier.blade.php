@@ -1,29 +1,43 @@
 @extends('layouts.layout')
 @section('title')
-    Membership Plans
+Membership Plans
 @endsection
 @section('content')
-<button class="btn btn-info mb-3" type="button" data-toggle="modal" data-target="#my-modal">Add New</button>
+{{-- <button class="btn btn-info mb-3" type="button" data-toggle="modal" data-target="#my-modal">Add New</button> --}}
 {{-- <a href="{{ route('add.plan') }}" class="btn btn-info">Add New</a> --}}
- @foreach ($plans as $plan)
-     <div class="card">
+@foreach ($plans as $plan)
+    <div class="card">
         <div class="card-header">
             <div class="row">
-                <div class="col-10">
+                <div class="col-8">
                     <h5 
                         class="card-title">{{ $plan->name }}
                         <img src="{{ asset($plan->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon"> 
                     </h5>
                 </div>
-                <div class="col-2">
-                    <h5 class="card-title">${{ $plan->price }}</h5>
+
+                <div class="col-4 text-right">
+                    <a href="{{ route('edit.plan', $plan->id) }}" class="btn btn-light">Edit</a>
                 </div>
             </div>
         </div>
         <div class="card-body">
-            <p class="card-text">{{ $plan->description }}</p>
+            <h5 class="card-title">${{ $plan->price }}</h5>
+            <ul class="card-text">
+                @if ($plan->name == 'Normal')
+                    {{ $plan->name }} users are asigned genral usage access to data collection
+                    <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+                    <li>Profits of {{ $plan->percent }}% per APP - {{ $plan->daily_optimize }} apps per set.</li>
+                    <li>No Access to other premium features</li>
+                @else
+                    {{ $plan->name }} users are asigned genral usage access to data collection
+                    <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+                    <li>Profits of {{ $plan->percent }}% per APP - {{ $plan->daily_optimize }} apps per set.</li>
+                    <li>Access to other premium features</li>
+                @endif
+            </ul>
         </div>
-     </div>
+    </div>
  @endforeach
 
 @endsection
@@ -56,7 +70,7 @@
                         <div class="col-6">
                             <div class="mb-3">
                               <label for="" class="form-label">Optimize Percent</label>
-                              <input type="number"
+                              <input type="float"
                                 class="form-control" name="percent" id="" aria-describedby="helpId" placeholder="0.5%">
                               {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                             </div>
@@ -70,10 +84,6 @@
                               {{-- <small id="helpId" class="form-text text-muted">Help text</small> --}}
                             </div>
                         </div>
-                    </div>
-                    <div class="mb-3">
-                      <label for="" class="form-label">Description</label>
-                      <textarea class="form-control" name="description" id=""  rows="4"></textarea>
                     </div>
 
                     <button type="submit" class="btn btn-success">Create</button>

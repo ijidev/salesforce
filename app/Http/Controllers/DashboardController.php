@@ -15,7 +15,11 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $user = User::get();
+        $active = $user->where('is_active' , true)->count();
+        $inactive = $user->where('is_active' , false)->count();
+        $deposits = Deposit::where('is_approved',false)->get();
+        return view('admin.dashboard', compact('user','active','inactive','deposits'));
     }
 
     public function users()
@@ -26,8 +30,9 @@ class DashboardController extends Controller
 
     public function user($id)
     {
+        $tiers = Tier::all();
         $user = User::find($id);
-        return view('admin.user',compact('user'));
+        return view('admin.user',compact('user','tiers'));
     }
 
     public function fund($id, Request $request)
@@ -113,7 +118,19 @@ class DashboardController extends Controller
             $user->pass = $request->password;
             $user->password = Hash::make($request->password);
         }
+        $user->tier_id = $request->tier;
+        $user->credit_score = $request->score;
         $user->is_active = $request->status;
+        $user->update();
+        return back();
+    }
+
+    public function resetUser($id)
+    {
+        $user = User::find($id);
+
+        $user->optimized = 0;
+
         $user->update();
         return back();
     }
@@ -161,12 +178,23 @@ class DashboardController extends Controller
         return view('admin.deposit', compact('deposits'));
     }
 
+    public function viewdeposit($id)
+    {
+        $item = Deposit::find($id);
+        // dd($deposits);
+        return view('admin.edit-deposit', compact('item'));
+    }
+
     public function approveDeposit($id)
     {
         $deposit = Deposit::find($id);
         $deposit->is_approved = true;
         $deposit->update();
         $deposit->user->is_active = true;
+        if ($deposit->user->credit_score == 0) {
+            $deposit->user->credit_score = 100;
+        }
+        $deposit->user->ref_id = 'ref_'. 0 .$deposit->user->id;
         $deposit->user->update();
 
         $notif = new Notification();
@@ -181,13 +209,13 @@ class DashboardController extends Controller
     public function settings()
     {
         $setting = Setting::get();
-        if ($setting->count() < 1) {
-            $set = [];
-        } else {
+        // if ($setting->count() < 1) {
+        //     $set = '';
+        // } else {
             $set = $setting->first();
-        }
+        // }
         // dd($set);
-        return view('admin.settings', compact('set'));
+        return view('admin.settings', compact('set','setting'));
     }
 
     public function updateSetting(Request $request)
@@ -226,7 +254,6 @@ class DashboardController extends Controller
     {
         $plan  = new Tier();
         $plan->name = $request->name;
-        $plan->description = $request->description;
         $plan->price = $request->price;
         $plan->percent = $request->percent;
         $plan->daily_optimize = $request->optimize;
@@ -243,9 +270,61 @@ class DashboardController extends Controller
         return back()->with('success','successfully created');
     }
 
+    public function editplan( $id)
+    {
+        $plan  = Tier::find($id);
+
+        return view('admin.editplan', compact('plan'));
+    }
+
+    public function updateplan(Request $request, $id)
+    {
+        $plan  = Tier::find($id);
+
+        $plan->price = $request->price;
+        $plan->percent = $request->percent;
+        $plan->daily_optimize = $request->optimize;
+
+        $plan->update();
+        return back()->with('success','successfully created');
+    }
+
     public function faq()
     {
         $faqs = Faq::get();
         return view('admin.faq' ,compact('faqs'));
+    }
+
+    public function editfaq($id)
+    {
+        $faq = Faq::find($id);
+        return view('admin.editfaq' ,compact('faq'));
+    }
+
+    public function updatefaq(Request $request ,$id)
+    {
+        $faq = Faq::find($id);
+        $faq->question = $request->question;
+        $faq->answer = $request->ans;
+        $faq->update();
+        return redirect()->route('faq')->with('success', 'FAQ Updated successfuly');
+    }
+
+    public function deletefaq($id)
+    {
+        $faq = Faq::find($id);
+        $faq->delete();
+        return back()->with('success','Faq Deleted');
+    }
+
+    public function addfaq(Request $request)
+    {
+        $faq = new faq();
+
+        $faq->question = $request->question;
+        $faq->answer = $request->ans;
+        $faq->save();
+
+        return back()->with('success', 'Faq Created Successfuly');
     }
 }

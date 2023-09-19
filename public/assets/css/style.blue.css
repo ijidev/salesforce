@@ -269,7 +269,7 @@ pre {
 }
 
 .dropdown-menu a:hover {
-  background: #37cfdc;
+  background: blue;
   color: #fff;
 }
 
@@ -1617,7 +1617,8 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 }
 
 .login-page .form-holder .form {
-  background: #2d3035;
+  background: rgba(0, 0, 255, 0.788);
+  border-radius: 10px;
 }
 
 .login-page .form-holder .form .form-group {
@@ -1631,7 +1632,7 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 
 .login-page .form-holder .form form {
   width: 100%;
-  max-width: 400px;
+  max-width: 100%;
 }
 
 .login-page .form-holder .form #login,
@@ -1680,13 +1681,19 @@ nav#sidebar.shrinked a[aria-expanded="true"]::after {
 *     FORMS 
 * ==========================================================
 */
-.form-control {
+.login-page .form-control {
   height: calc(2.4rem + 2px);
-  border: 1px solid #444951;
+  /* border: 1px solid #444951; */
   background: transparent;
   border-radius: 0;
-  color: #979a9f;
+  border: none;
+  color: #ffffff;
   padding: 0.45rem 0.75rem;
+  text-align: right;
+}
+
+.form-control{
+  background-color: transparent;
 }
 
 .form-control::-moz-placeholder {

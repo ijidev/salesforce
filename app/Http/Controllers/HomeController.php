@@ -62,8 +62,10 @@ class HomeController extends Controller
 
     public function getstarted()
     {
+        $notify = Notification::where('user_id', Auth::user()->id)
+            ->where('is_read', false)->get();
         $user = Auth::user();
-        return view('start', compact('user',));
+        return view('start', compact('user','notify'));
     }
 
     public function start()

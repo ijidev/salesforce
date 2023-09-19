@@ -1,12 +1,12 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 body {
-  background-color: #531CB3;
+  background-color: #1ea7fd33;
   margin: 0px;
   padding: 0px;
   font-family: 'Roboto', sans-serif;
   color: white;
-  background-image: url('./images/BG-26.png');
+  /* background-image: url('./images/landing-bg.png'); */
   /* opacity: 0.5; */
   /* height: 100vh !important; */
   background-position:center;
@@ -35,19 +35,19 @@ a:-webkit-any-link{
 .container {
     padding: 4px;
     border-radius: 10px;
-    /* background-color: rgba(0, 0, 0, 0.658); */
+    background-color: rgba(0, 0, 255, 0.466);
   border: white solid 1px;
   width: 50%;
   /* opacity: 0.9; */
   margin-left: auto;
   margin-right: auto;
-  padding-bottom: 100px;
+  margin-bottom: 100px;
 }
 
 header {
   display: flex;
   justify-content: space-between;
-  background-image: linear-gradient(180deg,#795ed1,#262151);
+  background-color: blue;
   padding: 3px 20px;
   color: white;
 }
@@ -66,7 +66,7 @@ header .user {
 }
 
 .faq-question {
-  background-image: linear-gradient(180deg,#795ed1,#262151);
+  background-color: blue;
   border: whitesmoke solid 1px;
   border-radius: 5px;
   color: white;
@@ -157,7 +157,7 @@ footer .badge {
   height: 20px;
   line-height: 20px;
   color: #fff;
-  background-image: linear-gradient(180deg,#795ed1,#262151);
+  background-color: blue;
   text-align: center;
   border-radius: 50%;
   padding: 0;
@@ -182,7 +182,7 @@ footer .badge {
 }
 
 .tiers {
-  background-image: linear-gradient(180deg,#795ed1,#262151);
+  background-color: blue;
   border-radius: 20px;
   /* padding: 5px 10px; */
   border: 1px solid white;
@@ -226,7 +226,7 @@ footer {
   justify-content: space-evenly;
   bottom: 0px;
   padding: 7px;
-  background-color: rgb(26, 22, 52);
+  background-color: blue;
   width: 100%;
   height: 70px;
   border-top: 1px solid white;
@@ -244,8 +244,9 @@ footer {
 }
 
 .footer-card-top {
-  background-color: #23025e;
+  background-color: blue;
   padding: 20px;
+  border-top:white solid 2px;
   border-radius: 100%;
   margin-bottom: 10px;
 }

@@ -81,7 +81,7 @@
 <div class="tiers">
 <div class="tiers-heading">
     <h4>Tiers</h4>
-    <a href="{{ route('membership') }}">View All ></a>
+    <a href="{{ route('membership') }}">View All <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></a>
 </div>
 <div class="medal-container">
     @foreach ($tiers as $item)
@@ -92,10 +92,33 @@
 </div>
 <hr>
 <ul>
-    {{ $tier->description }}
-    {{-- <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
-    <li>Voluptate quis dicta magni earum maxime error tenetur! Dolorem nobis ratione optio.</li>
-    <li>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Totam, velit.</li> --}}
+    {{-- {{ $tier->description }} --}}
+    @if (Auth::user()->tier->name == 'normal')
+        Normal users are asigned genral usage access to data collection
+        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
+        <li>No access to other premium features</li>
+    @elseif (Auth::user()->tier->name == 'silver')
+        Sliver users are asigned genral usage access to data collection
+        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
+        <li>Access to other premium features</li>
+    @elseif (Auth::user()->tier->name == 'gold')
+        Gold users are asigned genral usage access to data collection
+        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
+        <li>Access to other premium features</li>
+    @elseif (Auth::user()->tier->name == 'platinum')
+        platinum users are asigned genral usage access to data collection
+        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
+        <li>Access to other premium features</li>
+    @elseif (Auth::user()->tier->name == 'diamond')
+        Diamond users are asigned genral usage access to data collection
+        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
+        <li>Access to other premium features</li>
+    @endif
 </ul>
 </div>
 

@@ -36,7 +36,7 @@ Route::middleware(['auth'])->group(function () {
     
         Route::get('/tier', 'tier')->name('membership');
         Route::get('/edit', 'edit')->name('edit');
-        Route::get('/update', 'update')->name('user.update');
+        Route::get('/update', 'update')->name('user.store');
         
         Route::get('/info', 'info')->name('info');
         Route::get('/add-info', 'AddInfo')->name('info.add');
@@ -61,21 +61,35 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::controller(DashboardController::class)->group(function () {
         Route::get('/admin', 'index')->name('admin');
+
         Route::get('/admin/membership', 'plans')->name('plans');
-        Route::post('/admin/create', 'addplan')->name('add.plan');
+        Route::post('/admin/create-plan', 'addplan')->name('add.plan');
+        Route::get('/admin/edit-plan/{id}', 'Editplan')->name('edit.plan');
+        Route::get('/admin/store-plan/{id}', 'updateplan')->name('store.plan');
+
         Route::get('/admin/user/{id}', 'user')->name('user');
         Route::get('/admin/user/update/{id}', 'updateUser')->name('user.update');
+        Route::get('/admin/user/reset/{id}', 'resetUser')->name('reset');
         Route::get('/admin/user/delete/{id}', 'delete')->name('delete.user');
         Route::get('/admin/users', 'users')->name('users');
         Route::get('/admin/users/fund/{id}', 'fund')->name('manage.funds');
+        
         Route::get('/admin/faq', 'faq')->name('faq');
+        Route::get('/admin/add-faq', 'addfaq')->name('add.faq');
+        Route::get('/admin/update-faq/{id}', 'updatefaq')->name('update.faq');
+        Route::get('/admin/edit-faq/{id}', 'editfaq')->name('edit.faq');
+        Route::get('/admin/delete-faq/{id}', 'deletefaq')->name('delete.faq');
+
         // Route::get('/admin/terms', 'term')->name('terms');
         Route::get('/admin/settings', 'settings')->name('settings');
         Route::get('/admin/settings-update', 'updateSetting')->name('settings.update');
+
         Route::get('/admin/withwdrawal', 'withdraw')->name('withdrawa.request');
         Route::get('/admin/approve-withwdrawal/{id}', 'approve')->name('approve');
         Route::get('/admin/decline-withwdrawal/{id}', 'decline')->name('decline');
+
         Route::get('/admin/deposit', 'deposit')->name('deposit.request');
+        Route::get('/admin/view-deposit/{id}', 'viewDeposit')->name('view.deposit');
         Route::get('/admin/update-deposit/{id}', 'approveDeposit')->name('approve.deposit');
     });
 });

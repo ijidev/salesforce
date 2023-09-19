@@ -41,8 +41,19 @@
                     </div>
                     
                     <div class="card-body">
-                        <p class="card-text text-center">{{ $item->description }}</p>
-                    
+                        <ul class="card-text">
+                            @if ($item->name == 'normal')
+                                {{ $item->name }} users are asigned genral usage access to data collection
+                                <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+                                <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                <li>No Access to other premium features</li>
+                            @else
+                                {{ $item->name }} users are asigned genral usage access to data collection
+                                <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+                                <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                <li>Access to other premium features</li>
+                            @endif
+                        </ul>
                         <div class=" text-center">
                             {{-- <a href="{{ route('deposit',$item->id) }}" class="btn btn-primary" disabled>Select plan</a> --}}
                         </div>
@@ -68,8 +79,19 @@
                         </div>
                         
                         <div class="card-body">
-                            <p class="card-text text-center">{{ $item->description }}</p>
-                        
+                            <ul class="card-text">
+                                @if ($item->name == 'normal')
+                                    {{ $item->name }} users are asigned genral usage access to data collection
+                                    <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+                                    <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                    <li>No Access to other premium features</li>
+                                @else
+                                    {{ $item->name }} users are asigned genral usage access to data collection
+                                    <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
+                                    <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                    <li>Access to other premium features</li>
+                                @endif
+                            </ul>
                             <div class=" text-center">
                                 <a href="{{ route('deposit',$item->id) }}" class="btn btn-primary">Select plan</a>
                             </div>

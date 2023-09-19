@@ -12,10 +12,9 @@
  
 
 <nav class="navbar sticky-top">
-    <a href="{{ route('home') }}" class="navbar-brand">SalseForce</a>
-    {{-- <button class="navbar-toggler" data-target="#my-nav" data-toggle="collapse" aria-controls="my-nav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button> --}}
+    <a href="{{ route('home') }}">
+        <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" width="70" alt="logo">
+    </a>
     <div id="my-nav" class="navbar-expand">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">

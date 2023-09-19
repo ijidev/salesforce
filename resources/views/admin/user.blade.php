@@ -16,7 +16,9 @@
                 <div class="p-2">
                     <span style="font-size: 20px; font:bold;"> 
                         {{ $user->name }}
-                        <img src="{{ asset($user->tier->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
+                        @if ($user->tier != null)
+                            <img src="{{ asset($user->tier->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
+                        @endif
                     </span>
                     <br>
                 </div>
@@ -125,6 +127,31 @@
                 </div>
 
                 <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="my-input">Credit Score</label>
+                        <input id="my-input" class="form-control-range" value="{{ $user->credit_score }}" type="range" name="score" min="0" max="100">
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="my-select">Membership Plan</label>
+                        <select id="status" class="form-control" name="tier">
+                            @foreach ($tiers as $tier)
+                                @if ($tier->id == $user->tier_id)
+                                    <option selected value="{{ $tier->id }}">{{ $tier->name }}</option>
+                                @else
+                                    <option value="{{ $tier->id }}">{{ $tier->name }}</option>
+                                @endif
+                            @endforeach
+                            {{-- <option value="2">Silver user</option>
+                            <option value="3">Gold user</option>
+                            <option value="4">Platinum user</option>
+                            <option value="5">Diamond user</option> --}}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-6">
                     <div class="form-group">
                         <label for="my-select">User Ststus</label>
                         <select id="status" class="form-control" name="status">

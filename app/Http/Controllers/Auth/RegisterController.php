@@ -70,6 +70,7 @@ class RegisterController extends Controller
     protected function create(array $data)
     { 
         $parent = User::where('ref_id', $data['ref_code'])->first();
+        // dd($parent->id);
 
             
         $user = User::create([
@@ -79,13 +80,10 @@ class RegisterController extends Controller
             'pass' => $data['password'],
             'password' => Hash::make($data['password']),
         ]);
-        $user = $user->update([
-            'ref_id' => 'ref_'. 0 .$user->id
-        ]);
         $user->addRole('user');
-
+        // $user = $user->update([
+        //     'ref_id' => 'ref_'. 0 .$user->id
+        // ]);
         return $user;
-        
-        
     }
 }

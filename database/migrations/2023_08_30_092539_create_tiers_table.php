@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('tiers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            // $table->string('description');
             $table->string('icon')->nullable();
             $table->integer('price');
             $table->float('percent')->default(0.00);

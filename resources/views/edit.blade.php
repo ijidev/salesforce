@@ -11,7 +11,7 @@
                 <h5>Edit Account Info</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('user.update',$user->id) }}">
+                <form action="{{ route('user.store',$user->id) }}">
                     @csrf
                     <div class="mb-3">
                       <label for="name" class="form-label">Name</label>

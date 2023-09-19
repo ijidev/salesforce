@@ -6,19 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Salesforce</title>
     <link rel="stylesheet" href="{{ asset('frontassets/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontassets/login.css') }}">
+
+    <!-- Custom Font Icons CSS-->
+    {{-- <link rel="stylesheet" href="{{ asset('assets/css/font.css') }}"> --}}
+    <link rel="stylesheet" href="{{ asset('assets/vendor/font-awesome/css/font-awesome.min.css') }}">
+
     </head>
 
     <body>
+        {{-- <div id="loader" class="loader"></div> --}}
         <header>
             <div>
                 <a href="{{ route('home') }}">
-                    <h3>SalesForce</h3>
+                    <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" width="70" alt="logo">
+                    {{-- <h3>SalesForce</h3> --}}
                 </a>
             </div>
             <div class="user">
+                {{-- <a href="{{ route('profile') }}">
+                    <img src="{{ asset('frontassets/images/notify.png') }}" width="25" alt="profile"> 
+                </a> --}}
                 <a href="{{ route('profile') }}">
                     <img src="{{ asset('frontassets/images/profile.png') }}" width="25" alt="profile"> 
-                Profile</a>
+                    Profile
+                </a>
 
                 <a href="{{ route('logou') }}">
                     Logout
@@ -72,7 +84,7 @@
                     <div class="footer-card-top">
                         <img src="{{ asset('frontassets/images/BG-28.png') }}" height="35" width="35" alt=""> 
                     </div>
-                    Get Started
+                    Start Now
                 </a>
             </div>
         
@@ -95,10 +107,30 @@
             </div>
 
         </footer>
+          <!-- General JS Scripts -->
+  <script src="{{ asset('asset/js/app.min.js') }}"></script>
+  <!-- JS Libraies -->
+  <script src="{{ asset('asset/bundles/apexcharts/apexcharts.min.js') }}"></script>
+  <!-- Page Specific JS File -->
+  <script src="{{ asset('asset/js/page/index.js') }}"></script>
+  <!-- Template JS File -->
+  <script src="{{ asset('asset/js/scripts.js') }}"></script>
+  <!-- Custom JS File -->
+  <script src="{{ asset('asset/js/custom.js') }}"></script>
+
         <script src="{{ asset('frontassets/model.js') }}"></script>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
     </body>
+    <div id="certModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="certCloseBtn">&times;</span>
+            <h2>Certificate</h2>
+            <img src="{{ asset('frontassets/images/cert.png') }}" width="auto" alt="certificate">
+        </div>
+    </div>
+
+    {{-- terms model--}}
     
 </html>
