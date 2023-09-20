@@ -8,7 +8,7 @@
 
 <div class="container">
     <div class="row justify-content-center">
-        <div class=" pt-2 col-md-6">
+        <div class=" pt-2 col-md-7">
             <div class="card">
                 <div class="card-header text-white">
                     <h5>
@@ -25,15 +25,13 @@
                     <div class="card-header">
                         <div class="row">
 
-                            <h4 class="card-title col-8">
+                            <h4 class="card-title col-7">
                                 {{ $item->name}}
-                                <img src="{{ asset($item->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
-                                
+                                <img src="{{ asset($item->icon) }}" width="30" class="img-fluid rounded-circle" alt="icon">
+                                <span class="badge bg-primary">Current Tire</span>
                             </h4>
-
-                            <h5 class="col-4">
-                                {{ '$ '. $item->price }} <br>
-                                <span class="badge bg-prymary">Current Tire</span>
+                            <h5 class="col-5">
+                                {{ '$'. $item->price }} <br>
 
                             </h5>
 
@@ -43,12 +41,12 @@
                     <div class="card-body">
                         <ul class="card-text">
                             @if ($item->name == 'normal')
-                                {{ $item->name }} users are asigned genral usage access to data collection
+                                {{ $item->name }} users are asigned general usage access to data collection
                                 <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
                                 <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
                                 <li>No Access to other premium features</li>
                             @else
-                                {{ $item->name }} users are asigned genral usage access to data collection
+                                {{ $item->name }} users are asigned general usage access to data collection
                                 <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
                                 <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
                                 <li>Access to other premium features</li>
@@ -64,14 +62,14 @@
                         <div class="card-header">
                             <div class="row">
 
-                                <h4 class="card-title col-8">
+                                <h4 class="card-title col-sm-8">
                                     {{ $item->name}}
-                                    <img src="{{ asset($item->icon) }}" width="50" class="img-fluid rounded-circle" alt="icon">
+                                    <img src="{{ asset($item->icon) }}" width="30" class="img-fluid rounded-circle" alt="icon">
                                     
                                 </h4>
 
-                                <h5 class="col-4">
-                                    {{ '$ '. $item->price }}
+                                <h5 class="col-sm-4">
+                                    {{ '$'. $item->price }}
 
                                 </h5>
 
@@ -81,12 +79,12 @@
                         <div class="card-body">
                             <ul class="card-text">
                                 @if ($item->name == 'Normal')
-                                    {{ $item->name }} users are asigned genral usage access to data collection
+                                    {{ $item->name }} users are asigned general usage access to data collection
                                     <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
                                     <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
                                     <li>No Access to other premium features</li>
                                 @else
-                                    {{ $item->name }} users are asigned genral usage access to data collection
+                                    {{ $item->name }} users are asigned general usage access to data collection
                                     <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
                                     <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
                                     <li>Access to other premium features</li>

@@ -94,31 +94,17 @@
 <ul>
     {{-- {{ $tier->description }} --}}
     @if (Auth::user()->tier->name == 'Normal')
-        Normal users are asigned genral usage access to data collection
+        {{ $user->tier->name }} users are asigned general usage access to data collection
         <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
         <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
         <li>No access to other premium features</li>
-    @elseif (Auth::user()->tier->name == 'silver')
-        Sliver users are asigned genral usage access to data collection
-        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
-        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
-        <li>Access to other premium features</li>
-    @elseif (Auth::user()->tier->name == 'gold')
-        Gold users are asigned genral usage access to data collection
-        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
-        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
-        <li>Access to other premium features</li>
-    @elseif (Auth::user()->tier->name == 'platinum')
-        platinum users are asigned genral usage access to data collection
-        <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
-        <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
-        <li>Access to other premium features</li>
-    @elseif (Auth::user()->tier->name == 'diamond')
-        Diamond users are asigned genral usage access to data collection
+    @else (Auth::user()->tier->name == 'silver')
+        {{ $user->tier->name }} users are asigned general usage access to data collection
         <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
         <li>Profits of {{ $user->tier->percent }}% per APP - {{ $user->tier->daily_optimize }} apps per set.</li>
         <li>Access to other premium features</li>
     @endif
+        
 </ul>
 </div>
 
@@ -138,7 +124,9 @@
     <div class="modal-content">
         <span class="close" id="closeModalBtn">&times;</span>
         <h2>Terms</h2>
-        <p>{{ $set->term }}</p>
+        @if ($set != null)
+            <p>{{ $set->term }}</p>
+        @endif
     </div>
 </div>
 
@@ -166,6 +154,8 @@
         <span class="close" id="aboutCloseBtn">&times;</span>
         <h2>About Us</h2>
         <hr>
-        <p>{{ $set->about }}</p>
+        @if ($set != null)
+            <p>{{ $set->about }}</p>
+        @endif
     </div>
 </div>

@@ -4,57 +4,60 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{{ asset('frontassets/login.css') }}">
   <link rel="stylesheet" href="{{ asset('frontassets/custom.css') }}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <title>SalesForce</title>
 </head>
 <body class="body-bg">
+    {{-- <div id="loader" class="loader"></div> --}}
  
 
-<nav class="navbar sticky-top">
-    <a href="{{ route('home') }}">
-        <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" width="70" alt="logo">
-    </a>
-    <div id="my-nav" class="navbar-expand">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ route('profile') }}">
-                    <img src="{{ asset('frontassets/images/profile.png') }}" width="25" alt="profile"> 
-                    Profile
-                </a>
+    <nav class="navbar sticky-top">
+        <a href="{{ route('home') }}">
+            <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" width="70" alt="logo">
+        </a>
+        <div id="my-nav" class="navbar-expand">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ route('profile') }}">
+                        <img src="{{ asset('frontassets/images/profile.png') }}" width="25" alt="profile"> 
+                        Profile
+                    </a>
 
+                    
+                </li>
+
+                <li>
+                    <a href="{{ route('logou') }}">
+                        Logout
+                    </a>
+                </li>
                 
-            </li>
+            </ul>
+        </div>
+    </nav>
 
-            <li>
-                <a href="{{ route('logou') }}">
-                    Logout
-                </a>
-            </li>
-            
-        </ul>
+    <div class="page-header">
+        <div class="container-fluid">
+            <h2 class="h5 no-margin-bottom">@yield('title')</h2>
+            @if (session('success'))
+                <div class="alert alert-success text-center" role="alert">
+                    {{ session('success') }}
+                </div>   
+            @elseif (session('error'))
+                <div class="alert alert-danger text-center" role="alert">
+                    {{ session('error') }}
+                </div>
+            @endif
+        </div>
     </div>
-</nav>
-  <div class="page-header">
-      <div class="container-fluid">
-        <h2 class="h5 no-margin-bottom">@yield('title')</h2>
-          @if (session('success'))
-              <div class="alert alert-success text-center" role="alert">
-                  {{ session('success') }}
-              </div>   
-          @elseif (session('error'))
-              <div class="alert alert-danger text-center" role="alert">
-                  {{ session('error') }}
-              </div>
-          @endif
-      </div>
-  </div>
   
-  <main class="container">
-      <section>
-          @yield('content')
-      </section>
-  </main>
+    <main class="container">
+        <section>
+            @yield('content')
+        </section>
+    </main>
 
   {{-- <footer>
       <div class="footer-card">
