@@ -7,20 +7,22 @@
             <i data-feather="maximize"></i>
           </a></li>
         <li>
-          <form class="form-inline mr-auto">
+          
+          <!-- <form class="form-inline mr-auto">
             <div class="search-element">
               <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
               <button class="btn" type="submit">
                 <i class="fas fa-search"></i>
               </button>
             </div>
-          </form>
+          </form> -->
+
         </li>
       </ul>
     </div>
     
     <ul class="navbar-nav navbar-right">
-      <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
+      <!-- <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
           class="nav-link nav-link-lg message-toggle"><i data-feather="mail"></i>
           <span class="badge headerBadge1">
             6 </span> </a>
@@ -80,11 +82,12 @@
             <a href="#">View All <i class="fas fa-chevron-right"></i></a>
           </div>
         </div>
-      </li>
+      </li> -->
       @php
           $notify = \App\Models\Notification::where('user_id',Auth::user()->id)->get();
           // dd($notify);
       @endphp
+
       <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown"
           class="nav-link notification-toggle nav-link-lg"><i data-feather="bell" class="bell"></i>
         </a>
@@ -123,19 +126,20 @@
       </li>
 
       <li class="dropdown"><a href="#" data-toggle="dropdown"
-          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('asset/img/user.png') }}"
+          class="nav-link dropdown-toggle nav-link-lg nav-link-user"> <img alt="image" src="{{ asset('frontassets/images/avarter-2.jpg') }}"
             class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
         <div class="dropdown-menu dropdown-menu-right pullDown">
-          <div class="dropdown-title">Hello Sarah Smith</div>
+          <!-- <div class="dropdown-title">Hello Sarah Smith</div>
           <a href="profile.html" class="dropdown-item has-icon"> <i class="far
                                     fa-user"></i> Profile
           </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
             Activities
-          </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
+          </a> -->
+          <a href="{{ route('settings') }}" class="dropdown-item has-icon"> <i class="fas fa-cog"></i> 
             Settings
           </a>
           <div class="dropdown-divider"></div>
-          <a href="auth-login.html" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
+          <a href="{{ route('logou') }}" class="dropdown-item has-icon text-danger"> <i class="fas fa-sign-out-alt"></i>
             Logout
           </a>
         </div>
@@ -152,36 +156,39 @@
       </div>
       <ul class="sidebar-menu">
         <li class="menu-header">Main</li>
-        <li class="dropdown active">
-          <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+        
+        <li class="dropdown">
+          <a href="{{ route('admin') }}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
         </li>
+
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
-              data-feather="briefcase"></i><span>Widgets</span></a>
+              data-feather="briefcase"></i><span>Membership</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="widget-chart.html">Chart Widgets</a></li>
-            <li><a class="nav-link" href="widget-data.html">Data Widgets</a></li>
+            <li><a class="nav-link" href="{{ route('plans') }}">Plans</a></li>
           </ul>
         </li>
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Apps</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="chat.html">Chat</a></li>
-            <li><a class="nav-link" href="portfolio.html">Portfolio</a></li>
-            <li><a class="nav-link" href="blog.html">Blog</a></li>
-            <li><a class="nav-link" href="calendar.html">Calendar</a></li>
+            <li><a class="nav-link" href="{{route('apps')}}">All App</a></li>
+            <!-- <li><a class="nav-link" href="{{ route('app.review') }}">App Review</a></li> -->
           </ul>
         </li>
-        <li class="dropdown">
+
+        <!-- <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="mail"></i><span>Email</span></a>
           <ul class="dropdown-menu">
             <li><a class="nav-link" href="email-inbox.html">Inbox</a></li>
             <li><a class="nav-link" href="email-compose.html">Compose</a></li>
             <li><a class="nav-link" href="email-read.html">read</a></li>
           </ul>
-        </li>
-        <li class="menu-header">UI Elements</li>
-        <li class="dropdown">
+        </li> -->
+
+        <!-- <li class="menu-header">UI Elements</li> -->
+
+        <!-- <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="copy"></i><span>Basic
               Components</span></a>
           <ul class="dropdown-menu">
@@ -202,8 +209,9 @@
             <li><a class="nav-link" href="flags.html">Flag</a></li>
             <li><a class="nav-link" href="typography.html">Typography</a></li>
           </ul>
-        </li>
-        <li class="dropdown">
+        </li> -->
+
+        <!-- <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="shopping-bag"></i><span>Advanced</span></a>
           <ul class="dropdown-menu">
@@ -217,9 +225,15 @@
             <li><a class="nav-link" href="pricing.html">Pricing</a></li>
             <li><a class="nav-link" href="tabs.html">Tab</a></li>
           </ul>
-        </li>
-        <li><a class="nav-link" href="blank.html"><i data-feather="file"></i><span>Blank Page</span></a></li>
-        <li class="menu-header">Otika</li>
+        </li> -->
+
+        <li><a class="nav-link" href="{{route('users')}}"><i data-feather="user"></i><span>Users</span></a></li>
+        <li><a class="nav-link" href="{{route('withdrawa.request')}}"><i data-feather="file"></i><span>withwdrawal</span></a></li>
+        <li><a class="nav-link" href="{{route('deposit.request')}}"><i data-feather="file"></i><span>Deposit</span></a></li>
+        <li><a class="nav-link" href="{{route('faq')}}"><i data-feather="file"></i><span>FAQ</span></a></li>
+        <li><a class="nav-link" href="{{route('settings')}}"><i data-feather="settings"></i><span>Settings</span></a></li>
+        
+        <!-- <li class="menu-header">Otika</li>
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="layout"></i><span>Forms</span></a>
           <ul class="dropdown-menu">
@@ -230,6 +244,7 @@
             <li><a class="nav-link" href="form-wizard.html">Form Wizard</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="grid"></i><span>Tables</span></a>
           <ul class="dropdown-menu">
@@ -240,6 +255,7 @@
             <li><a class="nav-link" href="editable-table.html">Editable Table</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="pie-chart"></i><span>Charts</span></a>
@@ -252,6 +268,7 @@
             <li><a class="nav-link" href="chart-morris.html">Morris</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="feather"></i><span>Icons</span></a>
           <ul class="dropdown-menu">
@@ -262,6 +279,7 @@
             <li><a class="nav-link" href="icon-weather-icon.html">Weather Icon</a></li>
           </ul>
         </li>
+
         <li class="menu-header">Media</li>
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="image"></i><span>Gallery</span></a>
@@ -270,6 +288,7 @@
             <li><a href="gallery1.html">Gallery 2</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="flag"></i><span>Sliders</span></a>
           <ul class="dropdown-menu">
@@ -277,8 +296,10 @@
             <li><a class="nav-link" href="owl-carousel.html">Owl Carousel</a></li>
           </ul>
         </li>
+
         <li><a class="nav-link" href="timeline.html"><i data-feather="sliders"></i><span>Timeline</span></a></li>
         <li class="menu-header">Maps</li>
+        
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="map"></i><span>Google
               Maps</span></a>
@@ -293,8 +314,10 @@
             <li><a href="gmaps-simple.html">Simple</a></li>
           </ul>
         </li>
+
         <li><a class="nav-link" href="vector-map.html"><i data-feather="map-pin"></i><span>Vector
               Map</span></a></li>
+
         <li class="menu-header">Pages</li>
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
@@ -307,6 +330,7 @@
             <li><a href="subscribe.html">Subscribe</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="alert-triangle"></i><span>Errors</span></a>
@@ -317,6 +341,7 @@
             <li><a class="nav-link" href="errors-500.html">500</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="anchor"></i><span>Other
               Pages</span></a>
@@ -328,6 +353,7 @@
             <li><a class="nav-link" href="invoice.html">Invoice</a></li>
           </ul>
         </li>
+
         <li class="dropdown">
           <a href="#" class="menu-toggle nav-link has-dropdown"><i
               data-feather="chevrons-down"></i><span>Multilevel</span></a>
@@ -348,7 +374,7 @@
               </ul>
             </li>
           </ul>
-        </li>
+        </li> -->
       </ul>
     </aside>
 </div>

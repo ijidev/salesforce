@@ -6,6 +6,8 @@ use App\Models\Faq;
 use App\Models\Tier;
 use App\Models\User;
 use App\Models\Deposit;
+use App\Models\Product;
+use App\Models\ProductReview;
 use App\Models\Setting;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
@@ -242,6 +244,83 @@ class DashboardController extends Controller
         }
         
         return back()->with('success','settings updated successfuly');
+    }
+
+    public function apps()
+    {
+        $apps = Product::all();
+        return view('admin.apps',compact('apps'));
+    }
+
+    public function createApp()
+    {
+        return view('admin.create-app');
+    }
+
+    public function editApp($id)
+    {
+        $app = Product::findOrFail($id);
+        return view('admin.edit-app',compact('app'));
+
+    }
+
+    public function deleteApp($id)
+    {
+        $app = Product::findOrFail($id);
+
+        foreach ($app->review as $review) {
+            $review->delete();
+        }
+
+        $app->delete();
+        return back(); 
+    }
+
+    public function updateApp(Request $request, $id)
+    {
+        $app = Product::findOrFail($id);
+
+        $app->name = $request->name;
+        $app->price = $request->price;
+        $app->profit = $request->profit;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $extention = $file->getClientOriginalExtension();
+            $filename = $request->name.'.'.$extention;
+            $path = 'uploads/product/' ;
+            $file->move($path, $filename);
+    
+            $app->img = $path . $filename;
+        }
+
+        // dd($app);
+
+        $app->save();
+        
+        return redirect()->route('apps');
+    }
+
+    public function storeApp(Request $request)
+    {
+        $app = new Product();
+        $app->name = $request->name;
+        $app->price = $request->price;
+        $app->profit = $request->profit;
+
+        $file = $request->file('image');
+        $extention = $file->getClientOriginalExtension();
+        $filename = $request->name.'.'.$extention;
+        $path = 'uploads/product/' ;
+        $file->move($path, $filename);
+
+        $app->img = $path . $filename;
+
+        // dd($app);
+
+        $app->save();
+        
+        return redirect()->route('apps');
     }
 
     public function plans()

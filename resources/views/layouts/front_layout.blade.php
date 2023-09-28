@@ -24,7 +24,7 @@
       @include('layouts.front_nav')
 
       
-      <main class="container">
+      <!-- <main class="container"> -->
         <section class="section">
           
           <div class="page-header">
@@ -41,20 +41,21 @@
                   @endif
               </div>
           </div>
-
-
-            @yield('content')
+        <div class="main-content">
+          @yield('content')
+        </div>
+        
         </section>
-    </main>
+    <!-- </main> -->
 
-    <footer class="main-footer">
+    <!-- <footer class="main-footer">
       <div class="footer-left">
           <a href="templateshub.net">Templateshub</a></a>
       </div>
       <div class="footer-right">
         left footer item
       </div>
-    </footer>
+    </footer> -->
     </div>
   </div>
   <!-- General JS Scripts -->

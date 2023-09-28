@@ -252,7 +252,7 @@ footer {
 }
 
 .task {
-  margin-top: 100px;
+  margin-top: 0px;
   background: transparent;
   background-color: blue;
   padding: 10px;
@@ -281,9 +281,9 @@ footer {
   border-radius: 20px;
   margin-top: 20px;
 
-  &::before {
+  /* ::before {
     opacity: 0.5;
-  }
+  } */
 }
 
 .starting-header {

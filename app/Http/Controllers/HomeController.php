@@ -9,6 +9,8 @@ use App\Models\Deposit;
 use App\Models\Setting;
 use App\Models\Withdrawal;
 use App\Models\PaymentInfo;
+use App\Models\Product;
+use App\Models\ProductReview;
 use App\Models\UserPayment;
 use App\Models\Notification;
 use Illuminate\Http\Request;
@@ -76,6 +78,9 @@ class HomeController extends Controller
         $close_time = \Carbon\Carbon::parse($set->close_hour);
         $open_time = \Carbon\Carbon::parse($set->active_hour);
         $current_time = date('H');
+        $review = ProductReview::where('user_id',$user->id)
+            ->where('status', '!=' , 'approved' )->get();
+            // dd($review);
         
         
         // $ref_amt = $user->tier->percent / 100 * $set->ref_amount;
@@ -96,23 +101,35 @@ class HomeController extends Controller
         
         else{
 
-            if ($user->optimized < $user->tier->daily_optimize) {
+            if ($user->optimized >= $user->tier->daily_optimize) {
 
-                $percent = ($user->tier->price / 100) * $user->tier->percent;
+                // $percent = ($user->tier->price / 100) * $user->tier->percent;
 
-                $user->optimized += 1;
-                $user->balance += $percent;
-                $user->asset += $percent;
-                $user->update();
+                // $user->optimized += 1;
+                // $user->balance += $percent;
+                // $user->asset += $percent;
+                // $user->update();
 
-                $ref_amt = ($user->tier->percent / 100 ) * $set->ref_amount;
-                $parent->balance += $set->ref_amt;
-                $parent->asset += $ref_amt;
-                $parent->update();
-                
-                return back()->with('success', 'Optimized');
-            } else {
+                // $ref_amt = ($user->tier->percent / 100 ) * $set->ref_amount;
+                // $parent->balance += $set->ref_amt;
+                // $parent->asset += $ref_amt;
+                // $parent->update();
                 return back()->with('error', 'Optimiz daily limit reached contact Support to reset');
+
+                
+            } elseif (Auth::user()->is_active == false ) {
+                return back()->with('error', 'Account is in-Active please contact Support to Activate');
+                
+            }
+             elseif ( $review->count() >= 1) {
+                return redirect()->route('record')->with('error', 'you have one or more products pending completion please contact support');
+                
+            }
+            else {
+                $product = Product::get()->random();
+                // dd($product);
+                
+                return view('review',compact('product'));
                 # code...
             }
         }
@@ -120,6 +137,51 @@ class HomeController extends Controller
         
         // dd($user);
 
+    }
+
+    public function review(Request $request, $id)
+    {
+        $product = Product::findOrFail($id);
+        $user = Auth::user();
+        $review = new ProductReview();
+
+        if ($product->price > $user->asset) {
+
+            $review->product_id = $product->id;
+            $review->user_id = $user->id;
+            $review->rating = $request->rating;
+            $review->comment = $request->comment;
+            $review->status = 'frozen';
+    
+            // dd($review);
+            $review->save();
+
+            $user->frozen += $user->asset;
+            $user->asset -= $user->asset;
+            $user->update();
+
+            return redirect()->route('getstarted')->with('error','Insuficient balance, Please top up your account to continue review or contact support');
+
+        } else {
+    
+            $review->product_id = $product->id;
+            $review->user_id = $user->id;
+            $review->rating = $request->rating;
+            $review->comment = $request->comment;
+            $review->status = 'completed';
+    
+            // dd($review);
+            $review->save();
+
+            $user->balance += $product->profit ;
+            $user->asset += $product->profit ;
+            
+            $user->update();
+
+            return redirect()->route('getstarted')->with('success', 'Product review submited successfuly ');
+
+        }
+        
     }
 
     public function deposit($id)
@@ -176,6 +238,40 @@ class HomeController extends Controller
         $user = Auth::user();
         $tier = $user->tier->get()->first();
         return view('profile', compact('user', 'tier', 'tiers'));
+    }
+
+    public function record()
+    {
+        $user = Auth::user();
+        $records = ProductReview::where('user_id', $user->id)->latest()->paginate(20);
+
+        return view('record', compact('records', 'user'));
+    }
+    public function pendingRecord()
+    {
+        $user = Auth::user();
+        $records = ProductReview::where('user_id', $user->id)
+            ->where('status', 'pending')->latest()->paginate(20);
+
+        return view('record', compact('records', 'user'));
+    }
+    public function frozenRecord()
+    {
+        $user = Auth::user();
+        $records = ProductReview::where('user_id', $user->id)            
+            ->where('status', 'frozen')->latest()->paginate(20);
+
+
+        return view('record', compact('records', 'user'));
+    }
+    public function completedRecord()
+    {
+        $user = Auth::user();
+        $records = ProductReview::where('user_id', $user->id)
+            ->where('status', 'approved')->latest()->paginate(20);
+
+
+        return view('record', compact('records', 'user'));
     }
 
     public function tier()

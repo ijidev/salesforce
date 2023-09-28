@@ -30,6 +30,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/home', 'index')->name('home');
         Route::get('/profile', 'profile')->name('profile');
         Route::get('/optimize', 'start')->name('start');
+        Route::get('/review/{id}', 'review')->name('submit.review');
         Route::get('/get-Stated', 'getstarted')->name('getstarted');
         Route::get('/deposit/{id}', 'deposit')->name('deposit');
         Route::post('/complete-deposit/{id}', 'confirmDeposit')->name('confirm.deposit');
@@ -50,6 +51,11 @@ Route::middleware(['auth'])->group(function () {
     
         Route::get('/contact-us', 'contact')->name('contact');
         Route::get('/notification', 'notify')->name('notify');
+
+        Route::get('/records', 'record')->name('record');
+        Route::get('/completed-records', 'completedRecord')->name('record.completed');
+        Route::get('/frozen-records', 'frozenRecord')->name('record.frozen');
+        Route::get('/pending-records', 'pendingRecord')->name('record.pending');
     }); 
 
     Route::controller(LoginController::class)->group(function () {
@@ -74,6 +80,13 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/users', 'users')->name('users');
         Route::get('/admin/users/fund/{id}', 'fund')->name('manage.funds');
         
+        Route::get('/admin/apps', 'apps')->name('apps');
+        Route::post('/admin/update-app/{id}', 'updateApp')->name('app.update');
+        Route::get('/admin/delete-app/{id}', 'deleteApp')->name('app.delete');
+        Route::get('/admin/edit-app/{id}', 'editApp')->name('app.edit');
+        Route::post('/admin/store-app', 'storeApp')->name('app.store');
+        Route::get('/admin/app-reviwe ', 'appReview')->name('app.review');
+
         Route::get('/admin/faq', 'faq')->name('faq');
         Route::get('/admin/add-faq', 'addfaq')->name('add.faq');
         Route::get('/admin/update-faq/{id}', 'updatefaq')->name('update.faq');

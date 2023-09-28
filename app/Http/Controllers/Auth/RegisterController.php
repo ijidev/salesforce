@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'ref_code' => ['required', 'exists:users,ref_id']
+            'ref_code' => ['exists:users,ref_id']
         ],[
             'ref_code.exists' => 'invalid ref_code, No user with this ref id.'
         ]);

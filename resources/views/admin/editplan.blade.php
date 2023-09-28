@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.front_layout')
 @section('title')
     Edit membership plan
 @endsection

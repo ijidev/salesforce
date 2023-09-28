@@ -11,3 +11,12 @@
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
   }
+
+.alert-danger{
+  background-color: red;
+  color: #f3f3f3;
+}
+.alert-success{
+  background-color: greenyellow;
+  color: #f3f3f3;
+}

@@ -6,16 +6,19 @@
             <div class="form-holder has-shadow">
                 <div class="row justify-content-center">
                     <!-- Logo & Information Panel-->
-                    {{-- <div class="col-lg-6">
+                    <div class="col-12 text-center mb-4">
+                        <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" alt="">
+                    </div>
+                    <div class="col-lg-6">
                         <div class="info d-flex align-items-center">
                             <div class="content">
                                 <div class="logo">
-                                    <h1>Dashboard</h1>
+                                    <h1>Join Us</h1>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>Create an account today and explore our premuim features</p>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <!-- Form Panel    -->
                     <div class="col-lg-6">
                         <div class="form d-flex align-items-center">
@@ -76,7 +79,7 @@
                                         
                                         <label for="ref_code" class="col-4 text-white col-form-label text-md-end">{{ __('Refferal code') }}</label>
                                         <div class="col-8">
-                                            <input id="ref_code" type="text" placeholder="Referal Code..." class="form-control  text-white @error('ref_code') is-invalid @enderror" name="ref_code" value="{{ old('ref_code') }}" required>
+                                            <input id="ref_code" type="text" placeholder="Referal Code..." class="form-control  text-white @error('ref_code') is-invalid @enderror" name="ref_code" value="{{ old('ref_code') }}">
                                             @error('ref_code')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>

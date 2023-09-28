@@ -92,18 +92,20 @@
         <div class="container d-flex align-items-center">
             <div class="form-holder has-shadow">
                 <div class="row justify-content-center">
-        
+                    <div class="col-12 text-center mb-4">
+                        <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" alt="">
+                    </div>
                     <!-- Logo & Information Panel-->
-                    {{-- <div class="col-lg-6">
+                    <div class="col-lg-6">
                         <div class="info d-flex align-items-center">
                             <div class="content">
                                 <div class="logo">
-                                    <h1>Dashboard</h1>
+                                    <h1>Welcome Back</h1>
                                 </div>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                                <p>Login To your account to access our premuim features</p>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <!-- Form Panel    -->
                     <div class="col-lg-6">

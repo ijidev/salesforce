@@ -1,9 +1,10 @@
 @extends('layouts.front-header')
 @section('content')
   
+<!-- {{ date('H') }} -->
   <div class="task">
     <div>
-      <h3>Optimise <br> {{ '('.$user->optimized .'/'. $user->tier->daily_optimize .')' }}</h3>
+      <h3>Optimise {{ '('.$user->optimized .'/'. $user->tier->daily_optimize .')' }}</h3>
     </div>
     @if ($user->optimized >= $user->tier->daily_optimize)
         <a class="btn text-white" href="{{ route('contact') }}" style="border: 1px solid white ; border-radius:10px; padding:5px;">Contact Support</a>
