@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2023 at 12:03 AM
+-- Generation Time: Sep 19, 2023 at 10:38 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -106,9 +106,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (13, '2023_09_09_205044_create_settings_table', 1),
 (14, '2023_09_11_221741_table_update', 1),
 (15, '2023_09_13_153723_create_faqs_table', 1),
-(16, '2023_09_16_050722_create_notifications_table', 1),
-(37, '2023_09_26_121738_create_products_table', 2),
-(38, '2023_09_26_140108_create_product_reviews_table', 2);
+(16, '2023_09_16_050722_create_notifications_table', 1);
 
 -- --------------------------------------------------------
 
@@ -259,55 +257,6 @@ CREATE TABLE `personal_access_tokens` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `products`
---
-
-CREATE TABLE `products` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `img` varchar(255) NOT NULL,
-  `price` double(8,2) NOT NULL,
-  `profit` double(8,2) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `products`
---
-
-INSERT INTO `products` (`id`, `name`, `img`, `price`, `profit`, `created_at`, `updated_at`) VALUES
-(2, 'product 2', 'uploads/product/product 2.png', 50.00, 0.60, '2023-09-27 18:36:38', '2023-09-28 17:45:10'),
-(3, 'product 3', 'uploads/product/product 3.png', 20.00, 0.30, '2023-09-28 17:07:24', '2023-09-28 17:07:24');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product_reviews`
---
-
-CREATE TABLE `product_reviews` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `product_id` bigint(20) UNSIGNED NOT NULL,
-  `user_id` bigint(20) UNSIGNED NOT NULL,
-  `rating` int(11) NOT NULL,
-  `comment` varchar(255) NOT NULL,
-  `status` enum('approved','pending','frozen') NOT NULL DEFAULT 'pending',
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `product_reviews`
---
-
-INSERT INTO `product_reviews` (`id`, `product_id`, `user_id`, `rating`, `comment`, `status`, `created_at`, `updated_at`) VALUES
-(4, 2, 3, 5, 'nicr', 'frozen', '2023-09-28 09:41:06', '2023-09-28 09:41:06'),
-(5, 2, 3, 5, 'oo', 'frozen', '2023-09-28 20:17:57', '2023-09-28 20:17:57');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `roles`
 --
 
@@ -365,13 +314,6 @@ CREATE TABLE `settings` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `settings`
---
-
-INSERT INTO `settings` (`id`, `ref_amount`, `min_withdrawal`, `active_hour`, `close_hour`, `about`, `term`, `created_at`, `updated_at`) VALUES
-(1, '0', 0.00, '06:00:00', '23:06:00', NULL, NULL, '2023-09-27 17:06:50', '2023-09-27 17:35:25');
 
 -- --------------------------------------------------------
 
@@ -556,20 +498,6 @@ ALTER TABLE `personal_access_tokens`
   ADD KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`);
 
 --
--- Indexes for table `products`
---
-ALTER TABLE `products`
-  ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `product_reviews`
---
-ALTER TABLE `product_reviews`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `product_reviews_product_id_foreign` (`product_id`),
-  ADD KEY `product_reviews_user_id_foreign` (`user_id`);
-
---
 -- Indexes for table `roles`
 --
 ALTER TABLE `roles`
@@ -645,7 +573,7 @@ ALTER TABLE `faqs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -672,18 +600,6 @@ ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `products`
---
-ALTER TABLE `products`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
-
---
--- AUTO_INCREMENT for table `product_reviews`
---
-ALTER TABLE `product_reviews`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -693,7 +609,7 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tiers`
@@ -747,13 +663,6 @@ ALTER TABLE `permission_role`
 --
 ALTER TABLE `permission_user`
   ADD CONSTRAINT `permission_user_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `product_reviews`
---
-ALTER TABLE `product_reviews`
-  ADD CONSTRAINT `product_reviews_product_id_foreign` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`),
-  ADD CONSTRAINT `product_reviews_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
 -- Constraints for table `role_user`
