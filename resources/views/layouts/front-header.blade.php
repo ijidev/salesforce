@@ -7,6 +7,7 @@
     <title>Salesforce</title>
     <link rel="stylesheet" href="{{ asset('frontassets/style.css') }}">
     <link rel="stylesheet" href="{{ asset('frontassets/login.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.css">
 
     <!-- Custom Font Icons CSS-->
     {{-- <link rel="stylesheet" href="{{ asset('assets/css/font.css') }}"> --}}
@@ -111,19 +112,22 @@
   <script src="{{ asset('asset/js/app.min.js') }}"></script>
   <!-- JS Libraies -->
   <script src="{{ asset('asset/bundles/apexcharts/apexcharts.min.js') }}"></script>
+  
   <!-- Page Specific JS File -->
   <script src="{{ asset('asset/js/page/index.js') }}"></script>
   <!-- Template JS File -->
   <script src="{{ asset('asset/js/scripts.js') }}"></script>
   <!-- Custom JS File -->
   <script src="{{ asset('asset/js/custom.js') }}"></script>
-
-        <script src="{{ asset('frontassets/model.js') }}"></script>
-        <script src="{{ asset('frontassets/custom.js') }}"></script>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    </body>
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.0/main.min.js"></script>
+    <script src="{{ asset('frontassets/model.js') }}"></script>
+    <script src="{{ asset('frontassets/custom.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+</body>
     <div id="certModal" class="modal">
         <div class="modal-content">
             <span class="close" id="certCloseBtn">&times;</span>

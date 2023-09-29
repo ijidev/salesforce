@@ -157,5 +157,6 @@
         @if ($set != null)
             <p>{{ $set->about }}</p>
         @endif
+
     </div>
 </div>

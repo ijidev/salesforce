@@ -111,3 +111,23 @@ window.addEventListener('click', function(event) {
         closeAModal();
     }
 });
+
+ document.addEventListener('DOMContentLoaded', function() {
+            var calendarEl = document.getElementById('calendar');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth', // Set the initial view to month
+                initialDate: '<?= now()->toDateString() ?>', // Set the current date
+                events: [
+                    // You can add events here
+                    // Example:
+                    // {
+                    //     title: 'Event 1',
+                    //     start: '2023-09-29',
+                    //     end: '2023-09-30'
+                    // }
+                ]
+            });
+
+            calendar.render();
+        });
