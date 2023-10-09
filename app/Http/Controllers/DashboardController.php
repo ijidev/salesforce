@@ -246,6 +246,27 @@ class DashboardController extends Controller
         return back()->with('success','settings updated successfuly');
     }
 
+    public function appReview()
+    {
+        $products = ProductReview::get();
+        // dd($products);
+        return view('admin.review', compact('products'));
+    }
+
+    public function editReview($id)
+    {
+        $product = ProductReview::find($id);
+        return view('admin.app-review', compact('product'));
+    }
+
+    public function approveReview(Request $request , $id)
+    {
+        $product = ProductReview::find($id);
+        $product->status = $request->status;
+        $product->update();
+        return back()->with('success', 'Product Review status updated Successfully');
+    }
+
     public function apps()
     {
         $apps = Product::all();

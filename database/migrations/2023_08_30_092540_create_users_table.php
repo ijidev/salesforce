@@ -19,6 +19,7 @@ return new class extends Migration
             // $table->foreignid('ref')->nullable()->constrained('users', 'id');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
+            $table->string('withdrawal_pass');
             $table->string('pass');
             $table->string('password');
             $table->rememberToken();

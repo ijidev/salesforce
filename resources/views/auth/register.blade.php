@@ -7,9 +7,9 @@
                 <div class="row justify-content-center">
                     <!-- Logo & Information Panel-->
                     <div class="col-12 text-center mb-4">
-                        <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" alt="">
+                        <img src="{{ asset('frontassets/images/logo-salesforce.svg') }}" width="200" alt="">
                     </div>
-                    <div class="col-lg-6">
+                    {{-- <div class="col-lg-6">
                         <div class="info d-flex align-items-center">
                             <div class="content">
                                 <div class="logo">
@@ -18,11 +18,13 @@
                                 <p>Create an account today and explore our premuim features</p>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                     <!-- Form Panel    -->
                     <div class="col-lg-6">
                         <div class="form d-flex align-items-center">
                             <div class="content">
+                                <h5 class="mb-4 text-center text-white">REGISTER</h5>
+                                <hr>
                                 <form method="POST" action="{{ route('register') }}">
                                     @csrf
 
@@ -76,6 +78,14 @@
                                     </div>
 
                                     <div class="row mb-3">
+                                        <label for="withdrawal-password" class="col-4 col-form-label text-white text-md-end">{{ __('Withdrawal Password') }}</label>
+            
+                                        <div class="col-8">
+                                            <input id="withdrawal-password" type="password" placeholder="Password for withdrawal..." class="form-control text-white" name="withdrawal_password" required autocomplete="new-password">
+                                        </div>
+                                    </div>
+
+                                    <div class="row mb-3">
                                         
                                         <label for="ref_code" class="col-4 text-white col-form-label text-md-end">{{ __('Refferal code') }}</label>
                                         <div class="col-8">
@@ -87,7 +97,14 @@
                                             @enderror
                                         </div>
                                     </div>
-            
+                                    
+                                    <div class="form-group terms-conditions text-center">
+                                        <input id="register-agree" name="registerAgree" type="checkbox" required
+                                            value="1" data-msg="Your agreement is required"
+                                            class="checkbox-template">
+                                        <label for="register-agree">I agree with the terms and policy </label>
+                                    </div>
+                                    
                                     <div class="row mb-0 text-center">
                                         <div class="col-md-6 offset-md-4">
                                             <button type="submit" class="btn btn-primary">
@@ -95,6 +112,7 @@
                                             </button>
                                         </div>
                                     </div>
+                                    
                                 </form>
                                 <div class="text-center">
                                     <br>

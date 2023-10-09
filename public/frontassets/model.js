@@ -112,22 +112,76 @@ window.addEventListener('click', function(event) {
     }
 });
 
- document.addEventListener('DOMContentLoaded', function() {
-            var calendarEl = document.getElementById('calendar');
 
-            var calendar = new FullCalendar.Calendar(calendarEl, {
-                initialView: 'dayGridMonth', // Set the initial view to month
-                initialDate: '<?= now()->toDateString() ?>', // Set the current date
-                events: [
-                    // You can add events here
-                    // Example:
-                    // {
-                    //     title: 'Event 1',
-                    //     start: '2023-09-29',
-                    //     end: '2023-09-30'
-                    // }
-                ]
-            });
+// Event modal and buttons
+var eventmodal = document.getElementById('eventModal');
+var eventModalBtn = document.getElementById('eventModalBtn');
+var eventCloseBtn = document.getElementById('eventCloseBtn');
 
-            calendar.render();
-        });
+// Function to open the modal
+function openEvModal() {
+    eventmodal.style.display = 'block';
+}
+
+// Function to close the modal
+function closeEvModal() {
+    eventmodal.style.display = 'none';
+}
+
+// Event listeners for opening and closing the modal
+eventModalBtn.addEventListener('click', openEvModal);
+eventCloseBtn.addEventListener('click', closeEvModal);
+
+// Close the modal if the user clicks outside of it
+window.addEventListener('click', function(event) {
+    if (event.target == eventmodal) {
+        closeEvModal();
+    }
+});
+// Event modal and buttons
+var checkmodal = document.getElementById('checkModal');
+var checkModalBtn = document.getElementById('checkModalBtn');
+var checkCloseBtn = document.getElementById('checkCloseBtn');
+
+// Function to open the modal
+function openChModal() {
+    checkmodal.style.display = 'block';
+}
+
+// Function to close the modal
+function closeChModal() {
+    checkmodal.style.display = 'none';
+}
+
+// Event listeners for opening and closing the modal
+checkModalBtn.addEventListener('click', openChModal);
+checkCloseBtn.addEventListener('click', closeChModal);
+
+// Close the modal if the user clicks outside of it
+window.addEventListener('click', function(event) {
+    if (event.target == checkmodal) {
+        closeChModal();
+    }
+});
+
+
+
+//  document.addEventListener('DOMContentLoaded', function() {
+//             var calendarEl = document.getElementById('calandar');
+
+//             var calendar = new fullCalendar.Calendar(calendarEl, {
+//                 initialView: 'dayGridMonth', // Set the initial view to month
+//                 initialDate: '<?= now()->toDateString() ?>', // Set the current date
+//                 events: [
+//                     // You can add events here
+//                     // Example:
+//                     // {
+//                     //     title: 'Event 1',
+//                     //     start: '2023-09-29',
+//                     //     end: '2023-09-30'
+//                     // }
+//                 ]
+//             });
+
+//             calendar.render();
+//         });

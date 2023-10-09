@@ -42,13 +42,13 @@
                         <ul class="card-text">
                             @if ($item->name == 'normal')
                                 {{ $item->name }} users are asigned general usage access to data collection
-                                <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
-                                <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                <li>Applicable to most data collection situations of light to medium level of usage involving the products </li>
+                                <li>Profits of {{ $item->percent }}% per product - {{ $item->daily_optimize }} products per set.</li>
                                 <li>No Access to other premium features</li>
                             @else
                                 {{ $item->name }} users are asigned general usage access to data collection
-                                <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
-                                <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                <li>Applicable to most data collection situations of light to medium level of usage involving the products </li>
+                                <li>Profits of {{ $item->percent }}% per product - {{ $item->daily_optimize }} products per set.</li>
                                 <li>Access to other premium features</li>
                             @endif
                         </ul>
@@ -79,14 +79,14 @@
                         <div class="card-body">
                             <ul class="card-text">
                                 @if ($item->name == 'Normal')
-                                    {{ $item->name }} users are asigned general usage access to data collection
-                                    <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
-                                    <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                    {{ $item->name }} users are assigned general usage access to data collection
+                                    <li>Applicable to most data collection situations of light to medium level of usage involving the products </li>
+                                    <li>Profits of {{ $item->percent }}% per product - {{ $item->daily_optimize }} products per set.</li>
                                     <li>No Access to other premium features</li>
                                 @else
-                                    {{ $item->name }} users are asigned general usage access to data collection
-                                    <li>Applicable to most data collection situations of light to medium level of usage involving the APPs </li>
-                                    <li>Profits of {{ $item->percent }}% per APP - {{ $item->daily_optimize }} apps per set.</li>
+                                    {{ $item->name }} users are assigned general usage access to data collection
+                                    <li>Applicable to most data collection situations of light to medium level of usage involving the products </li>
+                                    <li>Profits of {{ $item->percent }}% per product - {{ $item->daily_optimize }} products per set.</li>
                                     <li>Access to other premium features</li>
                                 @endif
                             </ul>

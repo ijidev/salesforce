@@ -62,6 +62,11 @@ class HomeController extends Controller
         
     }
 
+    public function checkin()
+    {
+        return view('checkin');
+    }
+
     public function getstarted()
     {
         $notify = Notification::where('user_id', Auth::user()->id)
@@ -138,6 +143,23 @@ class HomeController extends Controller
         // dd($user);
 
     }
+
+    public function term()
+    {
+        return view('terms');
+    }
+
+    public function withdrawPas()
+    {
+        return view('withdraw-pass');
+    }
+
+    // public function passCheck(Request $request)
+    // {
+    //     if ($request->pass == Auth::user()->withdrawal_pass ) {
+    //         return
+    //     }
+    // }
 
     public function review(Request $request, $id)
     {
@@ -356,13 +378,19 @@ class HomeController extends Controller
         return redirect()->action([HomeController::class, 'info']);
     }
 
-    public function withdraw()
+    public function withdraw(Request $request)
     {
-        $user = Auth::user();
-        $wallets = UserPayment::get();
-        // dd($wallets);
-        $withdraw = Withdrawal::where('user_id', $user->id)->latest()->get();
-        return view('withdraw', compact('user','withdraw','wallets'));
+        
+        if ($request->pass == Auth::user()->withdrawal_pass ) {
+            $user = Auth::user();
+            $wallets = UserPayment::get();
+            // dd($wallets);
+            $withdraw = Withdrawal::where('user_id', $user->id)->latest()->get();
+            return view('withdraw', compact('user','withdraw','wallets'));
+        
+        }else{
+            return back()->with('error', 'incorrect password, please enter a valid password or contact support to reset password');
+        }
     }
 
     public function request(Request $request)

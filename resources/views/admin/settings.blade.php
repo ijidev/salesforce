@@ -71,7 +71,7 @@
         <div class="card-body">
           <div class="mb-3">
             {{-- <label for="" class="form-label">Terms & condition</label> --}}
-            <textarea class="form-control" name="terms" id="" rows="5">{{ $set->term }}</textarea>
+            <textarea class="form-control" name="terms" id="editor" rows="5">{{ $set->term }}</textarea>
           </div>
         </div>
         @else
@@ -139,7 +139,7 @@
           <div class="card-body">
             <div class="mb-3">
               {{-- <label for="" class="form-label">Terms & condition</label> --}}
-              <textarea class="form-control" name="terms" id="" rows="5"></textarea>
+              <textarea class="form-control" name="terms" id="editor" rows="5"></textarea>
             </div>
           </div>
         

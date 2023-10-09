@@ -170,10 +170,10 @@
           </ul>
         </li>
         <li class="dropdown">
-          <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Apps</span></a>
+          <a href="#" class="menu-toggle nav-link has-dropdown"><i data-feather="command"></i><span>Product</span></a>
           <ul class="dropdown-menu">
-            <li><a class="nav-link" href="{{route('apps')}}">All App</a></li>
-            <!-- <li><a class="nav-link" href="{{ route('app.review') }}">App Review</a></li> -->
+            <li><a class="nav-link" href="{{route('apps')}}">All Product</a></li>
+            <li><a class="nav-link" href="{{ route('app.review') }}">Product Review</a></li>
           </ul>
         </li>
 

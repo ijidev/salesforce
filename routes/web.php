@@ -22,12 +22,13 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/TC', [App\Http\Controllers\HomeController::class, 'term'])->name('term');
 // Route::post('/log-in', [LoginController::class, 'login'])->name('loggin');
 
 Route::middleware(['auth'])->group(function () {
     Route::controller(HomeController::class)->group(function () {
         Route::get('/home', 'index')->name('home');
+        Route::get('/checkin', 'checkin')->name('checkin');
         Route::get('/profile', 'profile')->name('profile');
         Route::get('/optimize', 'start')->name('start');
         Route::get('/review/{id}', 'review')->name('submit.review');
@@ -46,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/edit-info/{id}', 'EditInfo')->name('info.edit');
     
         Route::get('/withdraw', 'withdraw')->name('withdraw');
+        Route::get('/withdraw-pass', 'withdrawPas')->name('withdraw.pas');
         Route::get('/withdraw-request', 'request')->name('request.withdraw');
         Route::get('/history', 'history')->name('history');
     
@@ -85,7 +87,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/delete-app/{id}', 'deleteApp')->name('app.delete');
         Route::get('/admin/edit-app/{id}', 'editApp')->name('app.edit');
         Route::post('/admin/store-app', 'storeApp')->name('app.store');
-        Route::get('/admin/app-reviwe ', 'appReview')->name('app.review');
+        
+        Route::get('/admin/app-reviwe', 'appReview')->name('app.review');
+        Route::get('/admin/approve-reviwe/{id}', 'approveReview')->name('review.approve');
+        Route::get('/admin/edit-reviwe/{id}', 'editReview')->name('review.edit');
+
+        Route::get('/admin/app-submit/{id} ', 'appSubmit')->name('app.submit');
 
         Route::get('/admin/faq', 'faq')->name('faq');
         Route::get('/admin/add-faq', 'addfaq')->name('add.faq');
@@ -106,3 +113,7 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/update-deposit/{id}', 'approveDeposit')->name('approve.deposit');
     });
 });
+
+// Route::controller(HomeController::class)->group(function () {
+    // Route::get('/T&C', 'HomeController@term')->name('term');
+// });

@@ -82,7 +82,7 @@
                 <div class="card-body">
                     <ul class="list-group">
                         <li class="list-group-item">
-                            <a href="{{ route('withdraw') }}" class="btn">Withdrawal & History</a>
+                            <a href="{{ route('withdraw.pas') }}" class="btn">Withdrawal & History</a>
                         </li>
                         {{-- <li class="list-group-item">
                             <a href="{{ route('history') }}" class="btn">History</a>
@@ -108,3 +108,5 @@
         </div>
     </div>
 @endsection
+
+ 

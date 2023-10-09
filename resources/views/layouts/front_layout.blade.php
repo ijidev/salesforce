@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="{{ asset('asset/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('asset/css/components.css') }}">
   <!-- Custom style CSS -->
+  <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
   <link rel="stylesheet" href="{{ asset('asset/css/custom.css') }}">
   <link rel='shortcut icon' type='image/x-icon' href='{{ asset('asset/img/favicon.ico') }}' />
 </head>
@@ -27,21 +28,24 @@
       <!-- <main class="container"> -->
         <section class="section">
           
-          <div class="page-header">
-              <div class="container-fluid">
-                <h2 class="h5 no-margin-bottom">@yield('title')</h2>
-                  @if (session('success'))
-                      <div class="alert alert-success text-center" role="alert">
-                          {{ session('success') }}
-                      </div>   
-                  @elseif (session('error'))
-                      <div class="alert alert-danger text-center" role="alert">
-                          {{ session('error') }}
-                      </div>
-                  @endif
-              </div>
-          </div>
-        <div class="main-content">
+          {{-- <div class="page-header">
+            <h2 class="h5 no-margin-bottom">@yield('title')</h2>
+          </div> --}}
+
+          <div class="main-content">
+
+            <div class="container-fluid">
+                @if (session('success'))
+                    <div class="alert alert-success text-center" role="alert">
+                        {{ session('success') }}
+                    </div>   
+                @elseif (session('error'))
+                    <div class="alert alert-danger text-center" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+            </div>
+
           @yield('content')
         </div>
         
@@ -59,6 +63,13 @@
     </div>
   </div>
   <!-- General JS Scripts -->
+  <script>
+    ClassicEditor
+      .create( document.querySelector( '#editor' ) )
+      .catch( error => {
+        console.error( error );
+      } );
+  </script>
   <script src="{{ asset('asset/js/app.min.js') }}"></script>
   <!-- JS Libraies -->
   <script src="{{ asset('asset/bundles/apexcharts/apexcharts.min.js') }}"></script>

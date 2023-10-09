@@ -6,7 +6,7 @@
 @section('content')
 
  <div class="row">
-    <div class="col-4">
+    <div class="col-md-4">
         <div class="card">
             <div class="card-body">
                 <h4>Total Users:</h4>
@@ -15,7 +15,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-md-4">
         <div class="card">
             <div class="card-body">
                 <h4>Active Users:</h4>
@@ -24,7 +24,7 @@
         </div>
     </div>
 
-    <div class="col-4">
+    <div class="col-md-4">
         <div class="card">
             <div class="card-body">
                 <h4>Inactive Users:</h4>
