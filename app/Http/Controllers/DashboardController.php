@@ -9,6 +9,7 @@ use App\Models\Deposit;
 use App\Models\Product;
 use App\Models\ProductReview;
 use App\Models\Setting;
+use App\Models\Notification;
 use App\Models\Withdrawal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;

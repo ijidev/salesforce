@@ -16,14 +16,14 @@
 
             <div class="table-responsive">
                 <table class="table">
-                    <tr class="card-subtitle mb-2 text-muted text-center">
+                    <tr class="card-subtitle mb-2 text-muted">
                         <td>Rating</td>
                         <td>Comment</td>
                     </tr>
     
-                    <tr class="text-center">
+                    <tr class="">
                         <td>
-                            <h6 >{{$product->rating . '(star)'}}</h6>
+                            <h6 >{{$product->rating}}</h6>
                         </td>
                         
                         <td>

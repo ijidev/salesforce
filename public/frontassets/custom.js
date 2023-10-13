@@ -12,6 +12,11 @@ document.addEventListener("DOMContentLoaded", setValue);
 range.addEventListener('input', setValue);
 
 
+// Rating Initialization
+$(document).ready(function() {
+  $('#rateMe1').mdbRate();
+});
+
 // document.onreadystatechange = function() {
 //   if (document.readyState !== "complete") {
 //       document.querySelector(

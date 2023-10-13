@@ -166,7 +166,7 @@ class HomeController extends Controller
         $product = Product::findOrFail($id);
         $user = Auth::user();
         $review = new ProductReview();
-
+        // dd($request->all());
         if ($product->price > $user->asset) {
 
             $review->product_id = $product->id;
@@ -190,7 +190,7 @@ class HomeController extends Controller
             $review->user_id = $user->id;
             $review->rating = $request->rating;
             $review->comment = $request->comment;
-            $review->status = 'completed';
+            $review->status = 'approved';
     
             // dd($review);
             $review->save();

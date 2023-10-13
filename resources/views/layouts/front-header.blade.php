@@ -70,10 +70,12 @@
         <footer>
             <div class="footer-card">
 
-            <img src="{{ asset('frontassets/images/home.png') }}" width="25" alt="home">
-            <br>
-            <a href="{{ route('home') }}">Home</a>
-            </div>
+                <a href="{{ route('home') }}">
+                    <img src="{{ asset('frontassets/images/home.png') }}" width="25" alt="home">
+                    <br>
+                        Home
+                    </div>
+                </a>
 
 
             <div class="footer-card">
@@ -99,9 +101,9 @@
             <div class="footer-card">
                 <a href="{{ route('record') }}">
                     <img src="{{ asset('frontassets/images/records.png') }}" height="25" width="25" alt="">
-                @if ($notify->count() >= 1)
+                {{-- @if ($notify->count() >= 1)
                     <div class="badge">{{ $notify->count() }}</div>
-                @endif
+                @endif --}}
                 <br>
                     records 
                 </a>
