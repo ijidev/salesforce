@@ -61,9 +61,9 @@
 
         <div class="loader-wrapper" id="loader">
             <div class="loader"></div>
-            <p> Loading... please wait</p>
+            <p> Loading...</p>
         </div>
-        
+
         <header>
             <div>
                 <a href="{{ route('home') }}">
@@ -184,41 +184,40 @@
     
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-            const modal = document.getElementById("eventModal");
-            const closeModal = document.getElementById("eventCloseBtn");
-        
-            modal.style.display = "block";
-        
-            closeModal.addEventListener("click", function() {
-            modal.style.display = "none";
+                const modal = document.getElementById("popup");
+                const closeModal = document.getElementById("popCloseBtn");
+            
+                modal.style.display = "block";
+            
+                closeModal.addEventListener("click", function() {
+                modal.style.display = "none";
+                });
             });
-        });
 
-        // document.addEventListener("DOMContentLoaded", function() {
-        // const loader = document.getElementById("loader");
-        // const content = document.querySelector("body");
+            // document.addEventListener("DOMContentLoaded", function() {
+            // const loader = document.getElementById("loader");
+            // const content = document.querySelector("body");
 
-        // // Simulate loading time (you can replace this with actual loading code)
-        // setTimeout(function() {
-        //     loader.style.display = "none";
-        //     content.style.display = "block";
-        // }, 10000); // Change 2000 to the actual loading time in milliseconds
-        // });
+            // // Simulate loading time (you can replace this with actual loading code)
+            // setTimeout(function() {
+            //     loader.style.display = "none";
+            //     content.style.display = "block";
+            // }, 10000); // Change 2000 to the actual loading time in milliseconds
+            // });
 
-        document.onreadystatechange = function() {
-  if (document.readyState !== "complete") {
-      document.querySelector(
-        "body").style.visibility = "hidden";
-      document.querySelector(
-        "#loader").style.visibility = "visible";
-  } else {
-      document.querySelector(
-        "#loader").style.display = "none";
-      document.querySelector(
-        "body").style.visibility = "visible";
-  }
-}
-
+            document.onreadystatechange = function() {
+                if (document.readyState !== "complete") {
+                    document.querySelector(
+                        "body").style.visibility = "hidden";
+                    document.querySelector(
+                        "#loader").style.visibility = "visible";
+                } else {
+                    document.querySelector(
+                        "#loader").style.display = "none";
+                    document.querySelector(
+                        "body").style.visibility = "visible";
+                }
+            }
         </script>
 
         

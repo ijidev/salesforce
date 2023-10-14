@@ -10,12 +10,14 @@
                 <div class="card-header">
                     <h5 class="card-title">My Details</h5>
                 </div>
-                <div class="card-body">
-                    <table class="table table-dark table-responsive">
+                <div class="card-body table-responsive">
+                    <table class="table table-dark">
                         <thead>
                             <tr>
                                 <td>Wallet</td>
                                 <td>Address</td>
+                                <td>Delete</td>
+                                <td>Edit</td>
                             </tr>
                         </thead>
                         <tbody>

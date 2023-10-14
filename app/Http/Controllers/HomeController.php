@@ -197,6 +197,7 @@ class HomeController extends Controller
 
             $user->balance += $product->profit ;
             $user->asset += $product->profit ;
+            $user->optimized += 1 ;
             
             $user->update();
 

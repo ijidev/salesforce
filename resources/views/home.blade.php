@@ -240,20 +240,10 @@
     </div>
 </div>
 
-{{-- <div id="checkModal" class="modal">
+<div id="popup" class="modal">
     <div class="modal-content">
-        <span class="close" id="checkCloseBtn">&times;</span>
-        <h2>Check-in</h2>
-        <hr>
-        <div id="calendar"></div>
-
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('#calendar').fullCalendar({
-        
-                })
-            });
-        </script>
+        <span class="close" id="popCloseBtn">&times;</span>
+        <img data-v-a75f7a08="" alt="" src="{{ asset('frontassets/images/deposit.jpg') }}" style="max-width:100%;border:0"></strong>
     </div>
-</div> --}}
+</div>
 
