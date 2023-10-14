@@ -22,7 +22,48 @@
     </head>
 
     <body>
-        {{-- <div id="loader" class="loader"></div> --}}
+
+        <style>
+            .loader-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.7);
+                z-index: 9999;
+            }
+
+            .loader {
+                border: 4px solid #f3f3f3;
+                border-top: 4px solid #3498db;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 2s linear infinite;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+
+            .loader p {
+                margin-top: 20px;
+                color: white;
+                font-weight: bold;
+            }
+
+        </style>
+
+        <div class="loader-wrapper" id="loader">
+            <div class="loader"></div>
+            <p> Loading... please wait</p>
+        </div>
+        
         <header>
             <div>
                 <a href="{{ route('home') }}">
@@ -152,6 +193,32 @@
             modal.style.display = "none";
             });
         });
+
+        // document.addEventListener("DOMContentLoaded", function() {
+        // const loader = document.getElementById("loader");
+        // const content = document.querySelector("body");
+
+        // // Simulate loading time (you can replace this with actual loading code)
+        // setTimeout(function() {
+        //     loader.style.display = "none";
+        //     content.style.display = "block";
+        // }, 10000); // Change 2000 to the actual loading time in milliseconds
+        // });
+
+        document.onreadystatechange = function() {
+  if (document.readyState !== "complete") {
+      document.querySelector(
+        "body").style.visibility = "hidden";
+      document.querySelector(
+        "#loader").style.visibility = "visible";
+  } else {
+      document.querySelector(
+        "#loader").style.display = "none";
+      document.querySelector(
+        "body").style.visibility = "visible";
+  }
+}
+
         </script>
 
         
